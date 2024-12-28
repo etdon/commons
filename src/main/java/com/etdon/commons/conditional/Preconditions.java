@@ -1,6 +1,7 @@
 package com.etdon.commons.conditional;
 
 import com.etdon.commons.util.StringUtils;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -10,6 +11,7 @@ public final class Preconditions {
     private static final String DEFAULT_CHECK_NULL_MESSAGE = "Reference was not null.";
     private static final String DEFAULT_CHECK_STATE_MESSAGE = "State was false.";
 
+    @Contract("null -> fail")
     public static <T> void checkNotNull(@Nullable final T reference) throws NullPointerException {
 
         if (reference == null)
@@ -17,6 +19,7 @@ public final class Preconditions {
 
     }
 
+    @Contract("null, _, _ -> fail")
     public static <T> void checkNotNull(@Nullable final T reference, @Nullable final String message, @NotNull final Object... values) throws NullPointerException {
 
         if (reference == null)
@@ -24,6 +27,7 @@ public final class Preconditions {
 
     }
 
+    @Contract("!null -> fail")
     public static <T> void checkNull(@Nullable final T reference) throws IllegalArgumentException {
 
         if (reference != null)
@@ -31,6 +35,7 @@ public final class Preconditions {
 
     }
 
+    @Contract("!null, _, _ -> fail")
     public static <T> void checkNull(@Nullable final T reference, @Nullable final String message, @NotNull final Object... values) throws IllegalArgumentException {
 
         if (reference != null)
@@ -38,6 +43,7 @@ public final class Preconditions {
 
     }
 
+    @Contract("false -> fail")
     public static void checkState(final boolean state) throws IllegalStateException {
 
         if (!state)
@@ -45,6 +51,7 @@ public final class Preconditions {
 
     }
 
+    @Contract("false, _, _ -> fail")
     public static void checkState(final boolean state, @Nullable final String message, @NotNull final Object... values) throws IllegalStateException {
 
         if (!state)
