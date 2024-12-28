@@ -147,6 +147,7 @@ public class ByteReader {
 
     }
 
+    //<editor-fold desc="Short">
     public short readBigEndianShort() {
 
         return (short) (this.readByte() << 8 | this.readByte() & 0xFF);
@@ -156,6 +157,12 @@ public class ByteReader {
     public short peakBigEndianShort() {
 
         return (short) (this.peakByte() << 8 | this.peakOffsetByte(1) & 0xFF);
+
+    }
+
+    public short peakOffsetBigEndianShort(int offset) {
+
+        return (short) (this.peakOffsetByte(offset++) << 8 | this.peakOffsetByte(offset) & 0xFF);
 
     }
 
@@ -171,6 +178,89 @@ public class ByteReader {
 
     }
 
+    public short peakOffsetLittleEndianShort(int offset) {
+
+        return (short) (this.peakOffsetByte(offset++) & 0xFF | (this.peakOffsetByte(offset) & 0xFF) << 8);
+
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Integer">
+    public int readBigEndianInteger() {
+
+        return (this.readByte() << 24 | (this.readByte() & 0xFF) << 16 | (this.readByte() & 0xFF) << 8 | this.readByte() & 0xFF);
+
+    }
+
+    public int peakBigEndianInteger() {
+
+        return (this.peakOffsetByte(0) << 24 | (this.peakOffsetByte(1) & 0xFF) << 16 | (this.peakOffsetByte(2) & 0xFF) << 8 | this.peakOffsetByte(3) & 0xFF);
+
+    }
+
+    public int peakOffsetBigEndianInteger(int offset) {
+
+        return (this.peakOffsetByte(offset++) << 24 | (this.peakOffsetByte(offset++) & 0xFF) << 16 | (this.peakOffsetByte(offset++) & 0xFF) << 8 | this.peakOffsetByte(offset) & 0xFF);
+
+    }
+
+    public int readLittleEndianInteger() {
+
+        return (this.readByte() & 0xFF | (this.readByte() & 0xFF) << 8 | (this.readByte() & 0xFF) << 16 | this.readByte() << 24);
+
+    }
+
+    public int peakLittleEndianInteger() {
+
+        return (this.peakOffsetByte(0) & 0xFF | (this.peakOffsetByte(1) & 0xFF) << 8 | (this.peakOffsetByte(2) & 0xFF) << 16 | this.peakOffsetByte(3) << 24);
+
+    }
+
+    public int peakOffsetLittleEndianInteger(int offset) {
+
+        return (this.peakOffsetByte(offset++) & 0xFF | (this.peakOffsetByte(offset++) & 0xFF) << 8 | (this.peakOffsetByte(offset++) & 0xFF) << 16 | this.peakOffsetByte(offset) << 24);
+
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Long">
+    public long readBigEndianLong() {
+
+        return ((long) this.readBigEndianInteger() << 32) | (long) this.readBigEndianInteger() & 0xFFFFFFFFL;
+
+    }
+
+    public long peakBigEndianLong() {
+
+        return ((long) this.peakBigEndianInteger() << 32) | (long) this.peakOffsetBigEndianInteger(4) & 0xFFFFFFFFL;
+
+    }
+
+    public long peakOffsetBigEndianLong(int offset) {
+
+        return ((long) this.peakOffsetBigEndianInteger(offset += 4) << 32) | (long) this.peakOffsetBigEndianInteger(offset) & 0xFFFFFFFFL;
+
+    }
+
+    public long readLittleEndianLong() {
+
+        return (long) this.readLittleEndianInteger() & 0xFFFFFFFFL | ((long) this.readLittleEndianInteger() << 32);
+
+    }
+
+    public long peakLittleEndianLong() {
+
+        return (long) this.peakLittleEndianInteger() & 0xFFFFFFFFL | ((long) this.peakOffsetLittleEndianInteger(4) << 32);
+
+    }
+
+    public long peakOffsetLittleEndianLong(int offset) {
+
+        return (long) this.peakOffsetLittleEndianInteger(offset += 4) & 0xFFFFFFFFL | ((long) this.peakOffsetLittleEndianInteger(offset) << 32);
+
+    }
+    //</editor-fold>
+
     /**
      * Returns the internal offset.
      *
@@ -180,6 +270,12 @@ public class ByteReader {
     public int getOffset() {
 
         return this.offset;
+
+    }
+
+    public static ByteReader from(final byte[] bytes) {
+
+        return new ByteReader(bytes);
 
     }
 
