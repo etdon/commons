@@ -12,6 +12,7 @@ public final class StringUtils {
     public static String applyValues(@NotNull final String input, @NotNull final Object... values) {
 
         Preconditions.checkNotNull(input);
+        Preconditions.checkNotNull(values);
         if (values.length == 0)
             return input;
 

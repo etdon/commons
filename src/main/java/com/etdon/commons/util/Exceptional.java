@@ -1,5 +1,6 @@
 package com.etdon.commons.util;
 
+import com.etdon.commons.conditional.Preconditions;
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Constructor;
@@ -10,6 +11,10 @@ public final class Exceptional {
     public static <T extends Exception> T of(@NotNull final Class<T> type,
                                              @NotNull final String message,
                                              @NotNull final Object... values) {
+
+        Preconditions.checkNotNull(type);
+        Preconditions.checkNotNull(message);
+        Preconditions.checkNotNull(values);
 
         try {
             final Constructor<T> exception = type.getConstructor(String.class);

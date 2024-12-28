@@ -29,6 +29,8 @@ public class MapPlaceholderProcessor extends PlaceholderProcessor {
     @Nullable
     public String registerPlaceholder(@NotNull final String identifier, @NotNull final String value) {
 
+        Preconditions.checkNotNull(identifier);
+        Preconditions.checkNotNull(value);
         return this.placeholders.put(identifier, value);
 
     }
@@ -36,6 +38,7 @@ public class MapPlaceholderProcessor extends PlaceholderProcessor {
     @Nullable
     public String unregisterPlaceholder(@NotNull final String identifier) {
 
+        Preconditions.checkNotNull(identifier);
         return this.placeholders.remove(identifier);
 
     }
@@ -44,6 +47,7 @@ public class MapPlaceholderProcessor extends PlaceholderProcessor {
     @Override
     public String process(@NotNull final String input) {
 
+        Preconditions.checkNotNull(input);
         final char[] chars = input.toCharArray();
         final StringBuilder output = new StringBuilder();
 

@@ -1,5 +1,6 @@
 package com.etdon.commons.di;
 
+import com.etdon.commons.conditional.Preconditions;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -54,6 +55,7 @@ public class ServiceIdentifier {
 
     public static ServiceIdentifier of(@NotNull final Class<?> clazz) {
 
+        Preconditions.checkNotNull(clazz);
         return new ServiceIdentifier(clazz);
 
     }
