@@ -20,14 +20,14 @@ public class ExceptionalTests {
     @Test
     public void of_NullTypeAndMessage_Throws() {
 
-        assertThrows(IllegalArgumentException.class, () -> Exceptional.of(null, null));
+        assertThrows(NullPointerException.class, () -> Exceptional.of(null, null));
 
     }
 
     @Test
     public void of_NullValues_Throws() {
 
-        assertThrows(IllegalArgumentException.class, () -> Exceptional.of(RuntimeException.class, "", (Object[]) null));
+        assertThrows(NullPointerException.class, () -> Exceptional.of(RuntimeException.class, "", (Object[]) null));
 
     }
 

@@ -2,7 +2,6 @@ package com.etdon.commons.test.util;
 
 import com.etdon.commons.util.ByteUtils;
 import com.etdon.commons.util.Conversion;
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
