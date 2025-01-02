@@ -7,7 +7,7 @@
 The commons library provides re-usable components and utilities for your Java project. The implementation is lightweight yet still feature-rich and requires no external run-time dependencies. While the project is targeting Java 8 to maintain compatability
 with most projects it still focuses on modern and fluent implementations that allow you to streamline your code style.
 
-Make sure to check out the project's [wiki page](https://docs.etdon.com/commons/) for details regarding the available features as well as code examples.
+Make sure to check out the project's [wiki page][wiki_page] for details regarding the available features as well as code examples.
 
 ## 🚀 Getting Started
 
@@ -79,13 +79,16 @@ dependencies {
 </details>
 
 ## 📦 Building
-The build management tool used for this project is [Apache Maven](https://maven.apache.org/). Executing the following command will install the compiled artifact into your local repository if no critical issues occur during any of the lifecycle phases.
+The build management tool used for this project is [Apache Maven][build_tool]. Executing the following command will install the compiled artifact into your local repository if no critical issues occur during any of the lifecycle phases.
 ```
 mvn clean install
 ```
 
+## 🫴 Contributing
+The contribution guidelines are a part of the `shared-guidelines` repository and can be found here: [Contributing][contributing]
+
 ## 📄 License
-The `commons` project is licensed under the [Apache 2.0 License](https://github.com/etdon/commons/blob/master/LICENSE).
+The `commons` project is licensed under the [Apache 2.0 License][license].
 ```
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -99,3 +102,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
+
+[wiki_page]: https://docs.etdon.com/commons/
+[build_tool]: https://maven.apache.org/
+[contributing]: https://github.com/etdon/shared-guidelines/blob/main/CONTRIBUTING.md
+[license]: https://github.com/etdon/commons/blob/master/LICENSE
