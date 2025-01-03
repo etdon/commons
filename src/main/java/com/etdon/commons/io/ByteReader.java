@@ -40,7 +40,7 @@ public class ByteReader {
     }
 
     /**
-     * Reads the current byte and returns it before advancing the internal offset.
+     * Reads the current byte before advancing the internal offset.
      *
      * @return The byte.
      */
@@ -53,7 +53,7 @@ public class ByteReader {
     }
 
     /**
-     * Reads the current byte and returns it without advancing the internal offset.
+     * Reads the current byte without advancing the internal offset.
      *
      * @return The byte.
      */
@@ -65,12 +65,26 @@ public class ByteReader {
 
     }
 
+    /**
+     * Reads the byte at the provided offset and respectively advances the internal offset.
+     *
+     * @param offset The offset.
+     * @return The byte.
+     */
+
     public byte readOffsetByte(final int offset) {
 
         Preconditions.checkState(this.offset + offset < this.bytes.length);
         return this.bytes[this.offset += offset];
 
     }
+
+    /**
+     * Reads the byte at the provided offset without advancing the internal offset.
+     *
+     * @param offset The offset.
+     * @return The byte.
+     */
 
     public byte peakOffsetByte(final int offset) {
 
@@ -114,6 +128,15 @@ public class ByteReader {
 
     }
 
+    /**
+     * Reads the provided count of bytes at the provided offset from the internal byte array and respectively advances
+     * the internal offset.
+     *
+     * @param count  The byte count.
+     * @param offset The offset.
+     * @return The bytes.
+     */
+
     public byte[] readOffsetBytes(final int count, final int offset) {
 
         Preconditions.checkState(this.offset + offset + count - 1 < this.bytes.length);
@@ -125,6 +148,15 @@ public class ByteReader {
 
     }
 
+    /**
+     * Reads the provided count of bytes at the provided offset from the internal byte array without advancing the
+     * internal offset.
+     *
+     * @param count  The byte count.
+     * @param offset The offset.
+     * @return The bytes.
+     */
+
     public byte[] peakOffsetBytes(final int count, final int offset) {
 
         Preconditions.checkState(this.offset + offset + count - 1 < this.bytes.length);
@@ -135,11 +167,23 @@ public class ByteReader {
 
     }
 
+    /**
+     * Reads a boolean and advances the internal offset.
+     *
+     * @return The boolean.
+     */
+
     public boolean readBoolean() {
 
         return this.readByte() == 0x1;
 
     }
+
+    /**
+     * Reads a boolean without advancing the internal offset.
+     *
+     * @return The boolean.
+     */
 
     public boolean peakBoolean() {
 
@@ -148,11 +192,24 @@ public class ByteReader {
     }
 
     //<editor-fold desc="Short">
+
+    /**
+     * Reads a short in big endian format and advances the internal offset.
+     *
+     * @return The short.
+     */
+
     public short readBigEndianShort() {
 
         return (short) (this.readByte() << 8 | this.readByte() & 0xFF);
 
     }
+
+    /**
+     * Reads a short in big endian format without advancing the internal offset.
+     *
+     * @return The short.
+     */
 
     public short peakBigEndianShort() {
 
