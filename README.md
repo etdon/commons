@@ -2,6 +2,15 @@
     <img src="https://i.imgur.com/Pyluzxt.png" width=830 height=207>    
 </p>
 
+<div align="center">
+
+![Universal](https://img.shields.io/badge/Universal-white?style=for-the-badge&logo=github&label=Platform&color=%230173b3)
+![Java](https://img.shields.io/badge/Java-white?style=for-the-badge&logo=github&label=Language&color=%23b07219)
+![Apache Maven](https://img.shields.io/badge/Apache%20Maven-white?style=for-the-badge&logo=apache-maven&label=Building&color=%23C71A36)
+![Apache 2.0](https://img.shields.io/badge/Apache%202.0-white?style=for-the-badge&logo=apache&label=License&color=%23D22128)
+
+</div>
+
 ## 🔰 Introduction
 
 The `commons` library provides re-usable components and utilities for your Java project. The implementation is lightweight yet still feature-rich and requires no external run-time dependencies. While the project is targeting Java 8 to maintain compatability
