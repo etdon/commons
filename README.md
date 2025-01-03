@@ -4,7 +4,7 @@
 
 ## 🔰 Introduction
 
-The commons library provides re-usable components and utilities for your Java project. The implementation is lightweight yet still feature-rich and requires no external run-time dependencies. While the project is targeting Java 8 to maintain compatability
+The `commons` library provides re-usable components and utilities for your Java project. The implementation is lightweight yet still feature-rich and requires no external run-time dependencies. While the project is targeting Java 8 to maintain compatability
 with most projects it still focuses on modern and fluent implementations that allow you to streamline your code style.
 
 Make sure to check out the project's [wiki page][wiki_page] for details regarding the available features as well as code examples.
