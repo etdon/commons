@@ -7,7 +7,6 @@ package com.etdon.commons.builder;
  *
  * @param <T> The target type.
  */
-
 @FunctionalInterface
 public interface FluentBuilder<T> extends Builder<T> {
 }

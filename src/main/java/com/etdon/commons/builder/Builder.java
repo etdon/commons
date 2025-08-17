@@ -7,7 +7,6 @@ import org.jetbrains.annotations.NotNull;
  *
  * @param <T> The target type.
  */
-
 @FunctionalInterface
 public interface Builder<T> {
 

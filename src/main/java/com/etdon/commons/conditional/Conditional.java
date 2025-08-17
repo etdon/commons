@@ -12,7 +12,6 @@ public final class Conditional {
      * @param state     The state.
      * @param procedure The procedure.
      */
-
     public static void executeIfTrue(final boolean state, @NotNull final Procedure procedure) {
 
         Preconditions.checkNotNull(procedure);
@@ -26,7 +25,6 @@ public final class Conditional {
      * @param state     The state.
      * @param procedure The procedure.
      */
-
     public static void executeIfFalse(final boolean state, @NotNull final Procedure procedure) {
 
         Preconditions.checkNotNull(procedure);
@@ -41,7 +39,6 @@ public final class Conditional {
      * @param procedure The procedure.
      * @param <T>       The reference type.
      */
-
     public static <T> void executeIfNotNull(@Nullable final T reference, @NotNull final Procedure procedure) {
 
         Preconditions.checkNotNull(procedure);
@@ -56,7 +53,6 @@ public final class Conditional {
      * @param procedure The procedure.
      * @param <T>       The reference type.
      */
-
     public static <T> void executeIfNull(@Nullable final T reference, @NotNull final Procedure procedure) {
 
         Preconditions.checkNotNull(procedure);

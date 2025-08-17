@@ -5,7 +5,6 @@ import com.etdon.commons.conditional.Preconditions;
 /**
  * This class provides various utility methods for converting values from one type to another.
  */
-
 public final class Conversion {
 
     /**
@@ -14,7 +13,6 @@ public final class Conversion {
      * @param input The input.
      * @return The byte array.
      */
-
     public static byte[] convertLongToByteArray(final long input) {
 
         final byte[] output = new byte[8];
@@ -31,7 +29,6 @@ public final class Conversion {
      * @param input The input.
      * @return The byte array.
      */
-
     public static long convertByteArrayToLong(final byte[] input) {
 
         Preconditions.checkState(input.length == 8, "The provided byte array does not have a length of 8.");

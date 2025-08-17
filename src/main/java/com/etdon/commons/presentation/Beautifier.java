@@ -15,7 +15,6 @@ public final class Beautifier {
      * @param input The enum value.
      * @return The beautified string representation.
      */
-
     public static String beautifyEnum(@NotNull final Enum<?> input) {
 
         Preconditions.checkNotNull(input);
