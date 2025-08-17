@@ -18,7 +18,6 @@ public class ByteReader {
      *
      * @param count The byte count.
      */
-
     public void skip(final int count) {
 
         Preconditions.checkState(this.offset + count < this.bytes.length, "The provided byte count ({}) added to the internal offset ({}) is too large for the internal byte array (length: {})", count, this.offset, this.bytes.length);
@@ -31,10 +30,9 @@ public class ByteReader {
      *
      * @param offset The offset.
      */
-
     public void jump(final int offset) {
 
-        Preconditions.checkState(offset < this.bytes.length, "The provided offset ({}) is too large for the internal byte array (length: {}).", this.offset, this.bytes.length);
+        Preconditions.checkState(offset < this.bytes.length, "The provided offset ({}) is too large for the internal byte array (length: {}).", offset, this.bytes.length);
         this.offset = offset;
 
     }
@@ -44,7 +42,6 @@ public class ByteReader {
      *
      * @return The byte.
      */
-
     public byte readByte() {
 
         Preconditions.checkState(this.offset < this.bytes.length, "The byte reader has reached the end of the internal byte array.");
@@ -57,7 +54,6 @@ public class ByteReader {
      *
      * @return The byte.
      */
-
     public byte peekByte() {
 
         Preconditions.checkState(this.offset < this.bytes.length);
@@ -71,7 +67,6 @@ public class ByteReader {
      * @param offset The offset.
      * @return The byte.
      */
-
     public byte readOffsetByte(final int offset) {
 
         Preconditions.checkState(this.offset + offset < this.bytes.length);
@@ -85,7 +80,6 @@ public class ByteReader {
      * @param offset The offset.
      * @return The byte.
      */
-
     public byte peekOffsetByte(final int offset) {
 
         Preconditions.checkState(this.offset + offset < this.bytes.length);
@@ -99,7 +93,6 @@ public class ByteReader {
      * @param count The byte count.
      * @return The bytes.
      */
-
     public byte[] readBytes(final int count) {
 
         Preconditions.checkState(this.offset + count - 1 < this.bytes.length, "The byte reader has reached the end of the internal byte array.");
@@ -117,7 +110,6 @@ public class ByteReader {
      * @param count The byte count.
      * @return The bytes.
      */
-
     public byte[] peekBytes(final int count) {
 
         Preconditions.checkState(this.offset + count - 1 < this.bytes.length, "The byte reader has reached the end of the internal byte array.");
@@ -136,7 +128,6 @@ public class ByteReader {
      * @param offset The offset.
      * @return The bytes.
      */
-
     public byte[] readOffsetBytes(final int count, final int offset) {
 
         Preconditions.checkState(this.offset + offset + count - 1 < this.bytes.length);
@@ -156,7 +147,6 @@ public class ByteReader {
      * @param offset The offset.
      * @return The bytes.
      */
-
     public byte[] peekOffsetBytes(final int count, final int offset) {
 
         Preconditions.checkState(this.offset + offset + count - 1 < this.bytes.length);
@@ -172,7 +162,6 @@ public class ByteReader {
      *
      * @return The boolean.
      */
-
     public boolean readBoolean() {
 
         return this.readByte() == 0x1;
@@ -184,7 +173,6 @@ public class ByteReader {
      *
      * @return The boolean.
      */
-
     public boolean peekBoolean() {
 
         return this.peekByte() == 0x1;
@@ -198,7 +186,6 @@ public class ByteReader {
      *
      * @return The short.
      */
-
     public short readBigEndianShort() {
 
         return (short) (this.readByte() << 8 | this.readByte() & 0xFF);
@@ -210,7 +197,6 @@ public class ByteReader {
      *
      * @return The short.
      */
-
     public short peekBigEndianShort() {
 
         return (short) (this.peekByte() << 8 | this.peekOffsetByte(1) & 0xFF);
@@ -323,7 +309,6 @@ public class ByteReader {
      *
      * @return The internal offset.
      */
-
     public int getOffset() {
 
         return this.offset;
