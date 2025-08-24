@@ -60,5 +60,5 @@ return Strings.checkTraits(input, StringTrait.CONTAINS.apply(target));
 It's unsure if this or something like this will remain in the library, the idea of further flattening utility methods
 like `#containsAny` or `#endsWith` sounds tempting. There are multiple things to consider here though including - but
 not limited to - safety, performance, user-end complexity, flexibility and visual appeal. Static factory methods like
-`StringTrait.contains(target)` could be used instead to reduce user-end complexity and visual appeal at the cost of
-flexibility since users wouldn't be able to add equivalence for custom checks.
+`StringTrait.contains(target)` could be used instead to reduce user-end complexity and increase visual appeal at the
+cost of reduced flexibility since users wouldn't be able to add an equivalent for custom checks.
