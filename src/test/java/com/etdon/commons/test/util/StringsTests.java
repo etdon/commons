@@ -1,9 +1,11 @@
 package com.etdon.commons.test.util;
 
+import com.etdon.commons.trait.impl.string.StringTrait;
 import com.etdon.commons.util.Strings;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StringsTests {
 
@@ -83,6 +85,14 @@ public class StringsTests {
     public void list_NullValues_Success() {
 
         assertEquals("", Strings.list(null, null));
+
+    }
+
+    @Test
+    public void checkTraits_Example_Success() {
+
+        final String input = "ExAmPlE";
+        assertTrue(Strings.checkTraits(input, StringTrait.NOT_EMPTY, StringTrait.MIXED_CASE));
 
     }
 

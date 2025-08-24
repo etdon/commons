@@ -1,5 +1,7 @@
 package com.etdon.commons.util;
 
+import com.etdon.commons.trait.Trait;
+import com.etdon.commons.trait.Traits;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -44,6 +46,13 @@ public final class Strings {
         }
 
         return stringBuilder.toString();
+
+    }
+
+    @SafeVarargs
+    public static boolean checkTraits(@Nullable final CharSequence input, @Nullable final Trait<CharSequence>... traits) {
+
+        return Traits.check(input, traits);
 
     }
 
