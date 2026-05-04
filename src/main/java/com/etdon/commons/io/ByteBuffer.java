@@ -36,6 +36,9 @@ public class ByteBuffer {
      */
     public void put(final byte... values) {
 
+        if (values.length == 0)
+            return;
+        
         this.ensureSize(values.length);
         if (this.byteOrder == ByteOrder.LITTLE_ENDIAN) {
             for (final byte value : values)

@@ -12,7 +12,7 @@ public final class StringTrait {
     public static final Trait<CharSequence> EMPTY = (input) -> input == null || input.length() == 0;
     public static final Trait<CharSequence> NOT_EMPTY = (input) -> input != null && input.length() > 0;
     public static final Trait<CharSequence> MIXED_CASE = new MixedCaseStringTrait();
-    private static final Function<CharSequence, Trait<CharSequence>> CONTAINS = ContainsTrait::of;
+    public static final Function<CharSequence, Trait<CharSequence>> CONTAINS = ContainsTrait::of;
 
     private StringTrait() {
 

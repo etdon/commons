@@ -1,23 +1,23 @@
 This package introduces the `Trait` type and the associated concept of declaring a check for characteristics that a
 certain type might have. This leads to a much more flexible and user-extensible API.
 
-If we're taking a look at the apache commons `StringUtils` class it's easy to see that uber utility classes like that
-end up being extremely bloated, hard to read and hard to navigate. At the time of writing this the class has over 9000
-lines including comments.
+If we're taking a look at the apache commons `StringUtils` class it's easy to see that uber utility classes end up being
+extremely bloated, hard to read and hard to navigate. At the time of writing this the class has over 9000 lines including
+comments.
 
 A lot of the actual components can be sorted into specific categories. The class for example features well over 20
 methods that check for specific traits a provided `CharSequence` might have. All of those checker methods share very
-similar characteristics: They take a `CharSequence` input and return a `boolean`. This is a pattern you can see
-repeated in countless other utility classes of the library.
+similar characteristics: They take a `CharSequence` input and return a `boolean`. This is a repeated pattern present in
+many utility classes of the library.
 
-All of those checker methods could be flattened into one checker method instead: `#checkTraits` which takes a nullable
-input (for example in the form of a `CharSequence`) as well as a variable array of nullable `Trait` instances.
+All of those checker methods could be flattened into one instead: `#checkTraits` which takes a nullable input (for
+example in the form of a `CharSequence`) as well as a variable array of nullable `Trait` instances.
 
 This approach provides various advantages:
 - De-bloating of utility classes.
 - More convenience when checking for multiple traits.
 - Much more user-extensible because custom traits can be provided.
-- Simple traits can easily be represented by a lambda expression.
+- Simple trait checks can easily be implemented by a (one-line) lambda expression.
 
 Comparing the two approaches in a practical example where you'd, for example, check if a `String` is not blank,
 alphanumeric and mixed case you might end up with something like this:
@@ -27,12 +27,12 @@ return StringUtils.isNotBlank(input) &&
             StringUtils.isAlphanumeric(input) &&
             StringUtils.isMixedCase(input);
 ```
-while the proposed concept could turn it into something like this:
+while the proposed concept would turn it into something like this:
 ```java
 final String input = "EXAMPLE123";
 return Strings.checkTraits(input, StringTrait.NOT_BLANK, StringTrait.ALPHANUMERIC, StringTrait.MIXED_CASE);
 ```
-or this with static imports:
+or this with static imports (not recommended depending on the context):
 ```java
 import static com.etdon.commons.trait.impl.string.StringTrait.*;
 ...

@@ -16,7 +16,26 @@ final class ContainsTrait implements Trait<CharSequence> {
     @Override
     public boolean isEligible(@Nullable final CharSequence input) {
 
-        return false;
+        if (input == null && this.target == null)
+            return true;
+        if (input == null || input.length() < this.target.length())
+            return false;
+
+        int targetIndex = 0;
+        for (int i = 0; i < input.length(); i++) {
+            if (targetIndex >= this.target.length())
+                return true;
+            if (input.length() - i < (this.target.length() - targetIndex))
+                return false;
+            if (input.charAt(i) == this.target.charAt(targetIndex)) {
+                targetIndex++;
+            } else {
+                if (targetIndex > 0)
+                    targetIndex = 0;
+            }
+        }
+
+        return true;
 
     }
 
