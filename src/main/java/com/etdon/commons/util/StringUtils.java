@@ -74,20 +74,35 @@ public final class StringUtils {
 
     }
 
+    public static String toChunks(@NotNull final String input, final int chunkSize) {
+
+        return toChunks(input, chunkSize, ' ');
+
+    }
+
+
+    public static String toChunks(@NotNull final String input, final int chunkSize, final char separator) {
+
+        final StringBuilder output = new StringBuilder();
+        final char[] chars = input.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            output.append(chars[i]);
+            if ((i + 1) % chunkSize == 0 && (i + 1) < chars.length)
+                output.append(separator);
+        }
+
+        return output.toString();
+
+    }
+
     public static String toLines(@NotNull final String input, final int lineSize) {
 
         final StringBuilder output = new StringBuilder();
-        final StringBuilder line = new StringBuilder();
         final char[] chars = input.toCharArray();
         for (int i = 0; i < chars.length; i++) {
-            final char c = chars[i];
-            line.append(c);
-            if (line.length() >= lineSize) {
-                output.append(line);
-                line.setLength(0);
-                if (i < chars.length - 1)
-                    output.append(System.lineSeparator());
-            }
+            output.append(chars[i]);
+            if ((i + 1) % lineSize == 0 && (i + 1) < chars.length)
+                output.append(System.lineSeparator());
         }
 
         return output.toString();

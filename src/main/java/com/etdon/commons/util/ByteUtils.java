@@ -25,11 +25,24 @@ public final class ByteUtils {
 
     public static String bytesToHexString(final byte[] bytes) {
 
-        final StringBuilder stringBuilder = new StringBuilder();
+        final StringBuilder hexStringBuilder = new StringBuilder();
         for (final byte b : bytes)
-            stringBuilder.append(byteToHexString(b));
+            hexStringBuilder.append(byteToHexString(b));
 
-        return stringBuilder.toString();
+        return hexStringBuilder.toString();
+
+    }
+
+    public static String bytesToHexString(final byte[] bytes, final int split) {
+
+        final StringBuilder hexStringBuilder = new StringBuilder();
+        for (int i = 0; i < bytes.length; i++) {
+            hexStringBuilder.append(byteToHexString(bytes[i]));
+            if ((i + 1) % split == 0 && (i + 1) < bytes.length)
+                hexStringBuilder.append(' ');
+        }
+
+        return hexStringBuilder.toString();
 
     }
 
@@ -44,7 +57,7 @@ public final class ByteUtils {
         final StringBuilder binaryStringBuilder = new StringBuilder(Byte.SIZE);
         for (int i = 0; i < Byte.SIZE; i++) {
             binaryStringBuilder.append((b << i % Byte.SIZE & 0x80) == 0 ? '0' : '1');
-            if ((i + 1) % split == 0)
+            if ((i + 1) % split == 0 && (i + 1) < Byte.SIZE)
                 binaryStringBuilder.append(' ');
         }
 
