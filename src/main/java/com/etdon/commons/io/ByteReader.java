@@ -394,7 +394,7 @@ public class ByteReader {
     }
 
     /**
-     * Use {@link ByteReader#of(byte[])} instead.
+     * @deprecated replaced by {@link ByteReader#of(byte[])}
      */
     @Deprecated
     public static ByteReader from(final byte[] bytes) {
