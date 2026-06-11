@@ -88,8 +88,8 @@ public final class ColorUtils {
     public static int[] unpack(final int input) {
 
         final int[] output = new int[4];
-        output[0] = ((input >> 24) & 0xFF);
-        output[1] = ((input >> 16) & 0xFF);
+        output[0] = ((input >>> 24) & 0xFF);
+        output[1] = ((input >>> 16) & 0xFF);
         output[2] = ((input >>> 8) & 0xFF);
         output[3] = (input & 0xFF);
 
