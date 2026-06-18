@@ -10,8 +10,8 @@ public final class Conversion {
     /**
      * Converts the provided long to a byte array storing it in big endian format.
      *
-     * @param input The input.
-     * @return The byte array.
+     * @param input the input
+     * @return the byte array
      */
     public static byte[] convertLongToByteArray(final long input) {
 
@@ -26,8 +26,8 @@ public final class Conversion {
     /**
      * Converts the provided byte array to a long reading it in big endian format.
      *
-     * @param input The input.
-     * @return The byte array.
+     * @param input the input
+     * @return the byte array
      */
     public static long convertByteArrayToLong(final byte[] input) {
 

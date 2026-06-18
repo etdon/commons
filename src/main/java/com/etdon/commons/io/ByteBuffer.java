@@ -4,12 +4,21 @@ import com.etdon.commons.conditional.Preconditions;
 import com.etdon.commons.util.Exceptional;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Byte buffer implementation used to construct byte arrays in the endianness of choice. Put methods exist for all
+ * primitive types.
+ */
 public class ByteBuffer {
 
     private ByteOrder byteOrder = ByteOrder.LITTLE_ENDIAN;
     private byte[] buffer;
     private int size;
 
+    /**
+     * Initialize using {@link ByteBuffer#auto()} or {@link ByteBuffer#size(int)}.
+     *
+     * @param initialSize the initial size.
+     */
     private ByteBuffer(final int initialSize) {
 
         this.buffer = new byte[initialSize];
@@ -19,7 +28,7 @@ public class ByteBuffer {
     /**
      * Puts the provided <code>byte</code> value into the buffer resizing it if necessary.
      *
-     * @param value The <code>byte</code> value.
+     * @param value the <code>byte</code> value
      */
     public void put(final byte value) {
 
@@ -32,13 +41,13 @@ public class ByteBuffer {
      * Puts the provided <code>byte</code> values into the buffer resizing it if necessary. The order in which the bytes are added
      * depends on the current {@link ByteBuffer#byteOrder} of the {@link ByteBuffer}.
      *
-     * @param values The <code>byte</code> values.
+     * @param values the <code>byte</code> values
      */
     public void put(final byte... values) {
 
         if (values.length == 0)
             return;
-        
+
         this.ensureSize(values.length);
         if (this.byteOrder == ByteOrder.LITTLE_ENDIAN) {
             for (final byte value : values)
@@ -51,10 +60,33 @@ public class ByteBuffer {
     }
 
     /**
-     * Puts the provided <code>short</code> value into the buffer by putting the individual bytes of the short into a local buffer
-     * and calling {@link ByteBuffer#put(byte...)}.
+     * Puts the provided <code>boolean</code> value into the buffer by adding a byte with the value <code>1</code> if
+     * the boolean is <code>true</code> or <code>0</code> if it's <code>false</code>.
      *
-     * @param value The <code>short</code> value.
+     * @param value the <code>boolean</code> value
+     */
+    public void put(final boolean value) {
+
+        this.put((byte) (value ? 1 : 0));
+
+    }
+
+    /**
+     * Puts the provided <code>char</code> value into the buffer by casting it to a byte.
+     *
+     * @param value the <code>char</code> value
+     */
+    public void put(final char value) {
+
+        this.put((byte) value);
+
+    }
+
+    /**
+     * Puts the provided <code>short</code> value into the buffer by putting the individual bytes of the
+     * <code>short</code> into a local buffer and calling {@link ByteBuffer#put(byte...)}.
+     *
+     * @param value the <code>short</code> value
      */
     public void put(final short value) {
 
@@ -66,10 +98,10 @@ public class ByteBuffer {
     }
 
     /**
-     * Puts the provided <code>int</code> value into the buffer by putting the individual bytes of the <code>int</code> into a local buffer
-     * and calling {@link ByteBuffer#put(byte...)}.
+     * Puts the provided <code>int</code> value into the buffer by putting the individual bytes of the <code>int</code>
+     * into a local buffer and calling {@link ByteBuffer#put(byte...)}.
      *
-     * @param value The <code>int</code> value.
+     * @param value the <code>int</code> value
      */
     public void put(final int value) {
 
@@ -81,10 +113,10 @@ public class ByteBuffer {
     }
 
     /**
-     * Puts the provided <code>float</code> value into the buffer by putting the individual bytes of the <code>float</code> into a local buffer
-     * and calling {@link ByteBuffer#put(byte...)}.
+     * Puts the provided <code>float</code> value into the buffer by putting the individual bytes of the
+     * <code>float</code> into a local buffer and calling {@link ByteBuffer#put(byte...)}.
      *
-     * @param value The <code>float</code> value.
+     * @param value the <code>float</code> value
      */
     public void put(final float value) {
 
@@ -97,10 +129,10 @@ public class ByteBuffer {
     }
 
     /**
-     * Puts the provided <code>long</code> value into the buffer by putting the individual bytes of the <code>long</code> into a local buffer
-     * and calling {@link ByteBuffer#put(byte...)}.
+     * Puts the provided <code>long</code> value into the buffer by putting the individual bytes of the
+     * <code>long</code> into a local buffer and calling {@link ByteBuffer#put(byte...)}.
      *
-     * @param value The <code>long</code> value.
+     * @param value the <code>long</code> value
      */
     public void put(final long value) {
 
@@ -112,10 +144,10 @@ public class ByteBuffer {
     }
 
     /**
-     * Puts the provided <code>double</code> value into the buffer by putting the individual bytes of the <code>double</code> into a local buffer
-     * and calling {@link ByteBuffer#put(byte...)}.
+     * Puts the provided <code>double</code> value into the buffer by putting the individual bytes of the
+     * <code>double</code> into a local buffer and calling {@link ByteBuffer#put(byte...)}.
      *
-     * @param value The <code>double</code> value.
+     * @param value the <code>double</code> value
      */
     public void put(final double value) {
 
@@ -130,8 +162,8 @@ public class ByteBuffer {
     /**
      * Sets the <code>byte</code> at the provided index to the provided <code>byte</code> value.
      *
-     * @param index The index.
-     * @param value The value.
+     * @param index the index
+     * @param value the value
      */
     public void set(final int index, final byte value) {
 
@@ -144,7 +176,7 @@ public class ByteBuffer {
     /**
      * Exports the byte buffer to an accurately sized byte array.
      *
-     * @return The byte array.
+     * @return the byte array
      */
     public byte[] get() {
 
@@ -161,7 +193,7 @@ public class ByteBuffer {
     /**
      * Ensures that the internal byte array has the capacity to add the provided byte count and resizes it if not.
      *
-     * @param count The byte count.
+     * @param count the byte count
      */
     private void ensureSize(final int count) {
 
@@ -176,7 +208,7 @@ public class ByteBuffer {
     /**
      * Sets the {@link ByteBuffer#byteOrder} value to the provided {@link ByteOrder}.
      *
-     * @param byteOrder The byte order.
+     * @param byteOrder the byte order
      */
     public void setByteOrder(@NotNull final ByteOrder byteOrder) {
 
@@ -188,7 +220,7 @@ public class ByteBuffer {
     /**
      * Returns the current {@link ByteBuffer#byteOrder} value.
      *
-     * @return The byte order.
+     * @return the byte order
      */
     public ByteOrder getByteOrder() {
 
@@ -199,7 +231,7 @@ public class ByteBuffer {
     /**
      * Creates a new {@link ByteBuffer} with an initial size of <code>64</code>.
      *
-     * @return The new {@link ByteBuffer}.
+     * @return the new {@link ByteBuffer}
      */
     public static ByteBuffer auto() {
 
@@ -210,11 +242,12 @@ public class ByteBuffer {
     /**
      * Creates a new {@link ByteBuffer} with the provided initial size.
      *
-     * @param initialSize The initial size.
-     * @return The new {@link ByteBuffer}.
+     * @param initialSize the initial size
+     * @return the new {@link ByteBuffer}.
      */
     public static ByteBuffer size(final int initialSize) {
 
+        Preconditions.checkState(initialSize >= 0, "The size of a byte buffer cannot be negative.");
         return new ByteBuffer(initialSize);
 
     }

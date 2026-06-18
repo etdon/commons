@@ -11,25 +11,22 @@ import java.util.Optional;
 
 public class MapPlaceholderProcessor extends PlaceholderProcessor {
 
-    private final Map<String, String> placeholders;
+    private final Map<String, String> placeholders = new HashMap<>();
 
     public MapPlaceholderProcessor() {
-
-        this.placeholders = new HashMap<>();
 
     }
 
     public MapPlaceholderProcessor(@NotNull final Settings settings) {
 
         super(settings);
-        this.placeholders = new HashMap<>();
 
     }
 
     public MapPlaceholderProcessor(@NotNull final Map<String, String> placeholders) {
 
         Preconditions.checkNotNull(placeholders);
-        this.placeholders = placeholders;
+        this.registerPlaceholders(placeholders);
 
     }
 
@@ -37,10 +34,29 @@ public class MapPlaceholderProcessor extends PlaceholderProcessor {
 
         super(settings);
         Preconditions.checkNotNull(placeholders);
-        this.placeholders = placeholders;
+        this.registerPlaceholders(placeholders);
 
     }
 
+    /**
+     * Registers placeholders for all entries of the provided placeholder map.
+     *
+     * @param placeholders the placeholder map
+     */
+    public void registerPlaceholders(@NotNull final Map<String, String> placeholders) {
+
+        for (final Map.Entry<String, String> entry : placeholders.entrySet())
+            this.registerPlaceholder(entry.getKey(), entry.getValue());
+
+    }
+
+    /**
+     * Registers a placeholder with the provided non-<code>null</code> identifier and value.
+     *
+     * @param identifier the identifier
+     * @param value the value
+     * @return the previously registered value for the provided identifier or <code>null</code> if there was none
+     */
     @Nullable
     public String registerPlaceholder(@NotNull final String identifier, @NotNull final String value) {
 
@@ -50,6 +66,12 @@ public class MapPlaceholderProcessor extends PlaceholderProcessor {
 
     }
 
+    /**
+     * Unregisters the placeholder with the provided non-<code>null</code> identifier if present.
+     *
+     * @param identifier the identifier
+     * @return the previously registered value for the provided identifier or <code>null</code> if there was none
+     */
     @Nullable
     public String unregisterPlaceholder(@NotNull final String identifier) {
 
@@ -58,11 +80,45 @@ public class MapPlaceholderProcessor extends PlaceholderProcessor {
 
     }
 
+    /**
+     * Returns the count of currently registered placeholders.
+     *
+     * @return the placeholder count
+     */
+    public int getPlaceholderCount() {
+
+        return this.placeholders.size();
+
+    }
+
+    /**
+     * Returns a defensive copy of the internal placeholder registry map.
+     *
+     * @return defensive map copy
+     */
+    public Map<String, String> getEntries() {
+
+        return new HashMap<>(this.placeholders);
+
+    }
+
+    /**
+     * Scans the provided input for placeholder identifiers and replaces them with their registered value if present.
+     * If a placeholder identifier is found that isn't registered a re-constructed version of the found placeholder
+     * identifier created with {@link PlaceholderProcessor#createPlaceholder(String)} will be appended to the output
+     * instead.
+     *
+     * @param input the input
+     * @return a new string based on the input with its placeholders replaced
+     */
     @NotNull
     @Override
     public String process(@NotNull final String input) {
 
         Preconditions.checkNotNull(input);
+        if (this.placeholders.isEmpty())
+            return input;
+
         final char[] chars = input.toCharArray();
         final StringBuilder output = new StringBuilder();
 

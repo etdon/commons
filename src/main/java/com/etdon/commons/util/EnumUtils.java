@@ -9,10 +9,10 @@ public final class EnumUtils {
      * Find the enum value that follows the provided current enum value in the declaration order of the enum
      * implementation and returns it.
      *
-     * @param enumClass    The enum class.
-     * @param currentValue The current value.
-     * @param <T>          The enum type.
-     * @return The following value.
+     * @param enumClass    the enum type class
+     * @param currentValue the current value
+     * @param <T>          the enum type
+     * @return the following value
      */
     public static <T extends Enum<T>> T findNextEnumValue(@NotNull final Class<T> enumClass, @NotNull final T currentValue) {
 

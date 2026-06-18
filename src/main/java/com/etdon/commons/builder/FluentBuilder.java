@@ -5,7 +5,7 @@ package com.etdon.commons.builder;
  * implementing classes. It is up to the developer to select the proper Builder interface for their needs, for a
  * regular, non-fluent, builder consider using {@link com.etdon.commons.builder.Builder} instead.
  *
- * @param <T> The target type.
+ * @param <T> the target type
  */
 @FunctionalInterface
 public interface FluentBuilder<T> extends Builder<T> {

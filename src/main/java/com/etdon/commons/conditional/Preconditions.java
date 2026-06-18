@@ -14,9 +14,9 @@ public final class Preconditions {
     /**
      * Throws a {@link NullPointerException} if the provided reference is <code>null</code>.
      *
-     * @param reference The reference.
-     * @param <T>       The reference type.
-     * @throws NullPointerException If the provided reference is <code>null</code>.
+     * @param reference the reference
+     * @param <T>       the reference type
+     * @throws NullPointerException if the provided reference is <code>null</code>
      */
     @Contract("null -> fail")
     public static <T> void checkNotNull(@Nullable final T reference) throws NullPointerException {
@@ -29,11 +29,11 @@ public final class Preconditions {
     /**
      * Throws a {@link NullPointerException} with the provided message if the provided reference is <code>null</code>.
      *
-     * @param reference The reference.
-     * @param message   The message.
-     * @param values    The message placeholder values.
-     * @param <T>       The reference type.
-     * @throws NullPointerException If the provided reference is <code>null</code>.
+     * @param reference the reference
+     * @param message   the message
+     * @param values    the message placeholder values
+     * @param <T>       the reference type
+     * @throws NullPointerException if the provided reference is <code>null</code>
      */
     @Contract("null, _, _ -> fail")
     public static <T> void checkNotNull(@Nullable final T reference, @Nullable final String message, @NotNull final Object... values) throws NullPointerException {
@@ -46,9 +46,9 @@ public final class Preconditions {
     /**
      * Throws an {@link IllegalArgumentException} if the provided reference is not <code>null</code>.
      *
-     * @param reference The reference.
-     * @param <T>       The reference type.
-     * @throws IllegalArgumentException If the provided reference is not <code>null</code>.
+     * @param reference the reference
+     * @param <T>       the reference type
+     * @throws IllegalArgumentException if the provided reference is not <code>null</code>
      */
     @Contract("!null -> fail")
     public static <T> void checkNull(@Nullable final T reference) throws IllegalArgumentException {
@@ -61,11 +61,11 @@ public final class Preconditions {
     /**
      * Throws an {@link IllegalArgumentException} with the provided message if the provided reference is not <code>null</code>.
      *
-     * @param reference The reference.
-     * @param message   The message.
-     * @param values    The message placeholder values.
-     * @param <T>       The reference type.
-     * @throws IllegalArgumentException If the provided reference is not <code>null</code>.
+     * @param reference the reference
+     * @param message   the message
+     * @param values    the message placeholder values
+     * @param <T>       the reference type
+     * @throws IllegalArgumentException if the provided reference is not <code>null</code>
      */
     @Contract("!null, _, _ -> fail")
     public static <T> void checkNull(@Nullable final T reference, @Nullable final String message, @NotNull final Object... values) throws IllegalArgumentException {
@@ -78,8 +78,8 @@ public final class Preconditions {
     /**
      * Throws an {@link IllegalStateException} if the provided state is <code>false</code>.
      *
-     * @param state The state.
-     * @throws IllegalStateException If the provided state is <code>false</code>.
+     * @param state the state
+     * @throws IllegalStateException If the provided state is <code>false</code>
      */
     @Contract("false -> fail")
     public static void checkState(final boolean state) throws IllegalStateException {
@@ -92,10 +92,10 @@ public final class Preconditions {
     /**
      * Throws an {@link IllegalStateException} with the provided message if the provided state is <code>false</code>.
      *
-     * @param state   The state.
-     * @param message The message.
-     * @param values  The message placeholder values.
-     * @throws IllegalStateException If the provided state is <code>false</code>.
+     * @param state   the state
+     * @param message the message
+     * @param values  the message placeholder values
+     * @throws IllegalStateException if the provided state is <code>false</code>
      */
     @Contract("false, _, _ -> fail")
     public static void checkState(final boolean state, @Nullable final String message, @NotNull final Object... values) throws IllegalStateException {
