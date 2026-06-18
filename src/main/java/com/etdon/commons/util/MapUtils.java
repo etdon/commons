@@ -50,12 +50,10 @@ public final class MapUtils {
         Preconditions.checkNotNull(map);
         Preconditions.checkNotNull(key);
         Preconditions.checkNotNull(entry);
-
         final Collection<V> collection = map.get(key);
         Preconditions.checkNotNull(collection);
-        Preconditions.checkState(Collection.class.isAssignableFrom(collection.getClass()));
-
         collection.add(entry);
+
         return true;
 
     }

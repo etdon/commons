@@ -1,6 +1,7 @@
 package com.etdon.commons.manage;
 
 import com.etdon.commons.conditional.Preconditions;
+import com.etdon.commons.util.Exceptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -50,7 +51,6 @@ public abstract class Registry<K, V> {
     public void register(@NotNull final K key, @Nullable final V value) {
 
         Preconditions.checkNotNull(key);
-        Preconditions.checkNotNull(value);
         this.registered.put(key, value);
 
     }
@@ -130,7 +130,7 @@ public abstract class Registry<K, V> {
      * @return The map copy or <code>null</code> if the precise creation failed.
      */
     @SuppressWarnings("unchecked")
-    @Nullable
+    @NotNull
     public Map<K, V> getInternalMapCopy(final boolean precise) {
 
         if (precise) {
@@ -139,7 +139,7 @@ public abstract class Registry<K, V> {
                 return (Map<K, V>) constructor.newInstance(this.registered);
             } catch (final InstantiationException | InvocationTargetException |
                            NoSuchMethodException | IllegalAccessException ex) {
-                return null;
+                throw Exceptional.of("Failed to construct map of type '{}'", this.registered.getClass().getName());
             }
         }
 
