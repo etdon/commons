@@ -14,7 +14,6 @@ public final class EnumUtils {
      * @param <T>          The enum type.
      * @return The following value.
      */
-
     public static <T extends Enum<T>> T findNextEnumValue(@NotNull final Class<T> enumClass, @NotNull final T currentValue) {
 
         Preconditions.checkNotNull(enumClass);
