@@ -93,7 +93,7 @@ The build management tool used for this project is [Apache Maven][build_tool]. E
 mvn clean install
 ```
 
-## 🫴 Contributing
+## 📝 Contributing
 The contribution guidelines are a part of the `shared-guidelines` repository and can be found here: [Contributing][contributing]
 
 ## 📄 License
