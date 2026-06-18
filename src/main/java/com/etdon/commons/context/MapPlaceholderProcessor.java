@@ -19,8 +19,23 @@ public class MapPlaceholderProcessor extends PlaceholderProcessor {
 
     }
 
+    public MapPlaceholderProcessor(@NotNull final Settings settings) {
+
+        super(settings);
+        this.placeholders = new HashMap<>();
+
+    }
+
     public MapPlaceholderProcessor(@NotNull final Map<String, String> placeholders) {
 
+        Preconditions.checkNotNull(placeholders);
+        this.placeholders = placeholders;
+
+    }
+
+    public MapPlaceholderProcessor(@NotNull final Settings settings, @NotNull final Map<String, String> placeholders) {
+
+        super(settings);
         Preconditions.checkNotNull(placeholders);
         this.placeholders = placeholders;
 
