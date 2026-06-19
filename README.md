@@ -36,7 +36,7 @@ Make sure to check out the project's [wiki page][wiki_page] for details regardin
 <dependency>
     <groupId>com.etdon</groupId>
     <artifactId>commons</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
@@ -49,7 +49,7 @@ maven {
 
 ```groovy
 dependencies {
-    implementation 'com.etdon:commons:1.0.0'
+    implementation 'com.etdon:commons:1.0.1'
 }
 ```
 
@@ -68,7 +68,7 @@ dependencies {
 <dependency>
     <groupId>com.etdon</groupId>
     <artifactId>commons</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
 </dependency>
 ```
 
@@ -81,7 +81,7 @@ maven {
 
 ```groovy
 dependencies {
-    implementation 'com.etdon:commons:1.0.1-SNAPSHOT'
+    implementation 'com.etdon:commons:1.0.2-SNAPSHOT'
 }
 ```
 
