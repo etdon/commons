@@ -1,11 +1,15 @@
-package com.etdon.commons.test.util;
+package com.etdon.commons.util;
 
-import com.etdon.commons.util.Exceptional;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ExceptionalTests {
+/**
+ * @see Exceptional
+ */
+public class ExceptionalTest {
 
     @Test
     public void of_Create_Success() {

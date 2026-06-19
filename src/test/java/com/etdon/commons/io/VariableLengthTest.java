@@ -1,13 +1,15 @@
-package com.etdon.commons.test.io;
+package com.etdon.commons.io;
 
-import com.etdon.commons.io.VariableLength;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class VariableLengthTests {
+/**
+ * @see VariableLength
+ */
+public class VariableLengthTest {
 
     @Test
     public void readUnsigned_MultiByte_Success() {

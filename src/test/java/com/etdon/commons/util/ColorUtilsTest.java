@@ -1,11 +1,13 @@
-package com.etdon.commons.test.util;
+package com.etdon.commons.util;
 
-import com.etdon.commons.util.ColorUtils;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ColorUtilsTests {
+/**
+ * @see ColorUtils
+ */
+public class ColorUtilsTest {
 
     @Test
     public void pack_RGB_Success() {

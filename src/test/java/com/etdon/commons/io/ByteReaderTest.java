@@ -1,12 +1,13 @@
-package com.etdon.commons.test.util;
+package com.etdon.commons.io;
 
-import com.etdon.commons.io.ByteOrder;
-import com.etdon.commons.io.ByteReader;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ByteReaderTests {
+/**
+ * @see ByteReader
+ */
+public class ByteReaderTest {
 
     @Test
     public void explore_Example_Success() {

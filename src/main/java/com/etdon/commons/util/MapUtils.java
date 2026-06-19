@@ -4,7 +4,10 @@ import com.etdon.commons.conditional.Preconditions;
 import com.etdon.commons.tuple.KeyValuePair;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 public final class MapUtils {

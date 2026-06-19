@@ -9,7 +9,13 @@ public class ImmutablePair<K, V> implements KeyValuePair<K, V> {
     public final K key;
     public final V value;
 
-    public ImmutablePair(final K key, final V value) {
+    /**
+     * Initialize using {@link ImmutablePair#of(Object, Object)}.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    private ImmutablePair(final K key, final V value) {
 
         this.key = key;
         this.value = value;

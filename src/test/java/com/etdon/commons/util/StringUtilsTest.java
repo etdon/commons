@@ -1,11 +1,13 @@
-package com.etdon.commons.test.util;
+package com.etdon.commons.util;
 
-import com.etdon.commons.util.StringUtils;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class StringUtilsTests {
+/**
+ * @see StringUtils
+ */
+public class StringUtilsTest {
 
     @Test
     public void applyValues_Example_Success() {

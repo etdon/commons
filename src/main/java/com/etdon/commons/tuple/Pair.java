@@ -9,8 +9,14 @@ public class Pair<K, V> implements KeyValuePair<K, V> {
     private K key;
     private V value;
 
-    public Pair(@Nullable final K key,
-                @Nullable final V value) {
+    /**
+     * Initialize using {@link Pair#of(Object, Object)}.
+     *
+     * @param key   the key
+     * @param value the value
+     */
+    private Pair(@Nullable final K key,
+                 @Nullable final V value) {
 
         this.key = key;
         this.value = value;

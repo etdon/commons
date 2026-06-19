@@ -1,20 +1,23 @@
-package com.etdon.commons.test.util;
+package com.etdon.commons.trait.impl.string;
 
-import com.etdon.commons.trait.impl.string.StringTrait;
 import com.etdon.commons.util.Strings;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ContainsTraitTests {
+/**
+ * @see ContainsTrait
+ */
+public class ContainsTraitTest {
 
     @Test
     public void isEligible_Example_Success() {
 
         final String input = "Hello World!";
         final String target = "World";
-        assertTrue(Strings.checkTraits(input, StringTrait.CONTAINS.apply(target)));
+        Assertions.assertTrue(Strings.checkTraits(input, StringTrait.CONTAINS.apply(target)));
 
     }
 

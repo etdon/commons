@@ -1,13 +1,14 @@
-package com.etdon.commons.test.util;
+package com.etdon.commons.util;
 
-import com.etdon.commons.util.ByteUtils;
-import com.etdon.commons.util.Conversion;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ConversionTests {
+/**
+ * @see Conversion
+ */
+public class ConversionTest {
 
     @Test
     public void convertLongToByteArray_Example_Success() {

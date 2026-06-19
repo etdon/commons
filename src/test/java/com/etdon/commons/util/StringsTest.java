@@ -1,13 +1,15 @@
-package com.etdon.commons.test.util;
+package com.etdon.commons.util;
 
 import com.etdon.commons.trait.impl.string.StringTrait;
-import com.etdon.commons.util.Strings;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class StringsTests {
+/**
+ * @see Strings
+ */
+public class StringsTest {
 
     @Test
     public void surround_Example_Success() {

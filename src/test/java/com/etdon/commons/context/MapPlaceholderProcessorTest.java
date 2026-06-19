@@ -1,22 +1,24 @@
-package com.etdon.commons.test.context;
+package com.etdon.commons.context;
 
-import com.etdon.commons.context.MapPlaceholderProcessor;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Certain unit tests check for a {@link RuntimeException} instead of a {@link NullPointerException} thrown by
  * {@link com.etdon.commons.conditional.Preconditions} to avoid collision with the {@link org.jetbrains.annotations.NotNull}
  * null check that throws a {@link IllegalArgumentException} instead, which is not relevant after compilation.
+ * @see MapPlaceholderProcessor
  */
-public class MapPlaceholderProcessorTests {
+public class MapPlaceholderProcessorTest {
 
     @Test
-    public void initialize_ConstructorDirtyMapEntries_Throws() {
+    public void init_ConstructorDirtyMapEntries_Throws() {
 
         final Map<String, String> dirty = new HashMap<>();
         dirty.put("identifier", null);
@@ -26,7 +28,7 @@ public class MapPlaceholderProcessorTests {
     }
 
     @Test
-    public void initialize_ConstructorNoMapOwnership_Success() {
+    public void init_ConstructorNoMapOwnership_Success() {
 
         final Map<String, String> owned = new HashMap<>();
         owned.put("identifier", "value");
