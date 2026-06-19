@@ -12,6 +12,31 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class StringsTest {
 
     @Test
+    public void applyValues_Example_Success() {
+
+        final String input = "1: {} 2: {}";
+        final String output = Strings.applyValues(input, 1, 2);
+        assertEquals("1: 1 2: 2", output);
+
+    }
+
+    @Test
+    public void toChunks_Example_Success() {
+
+        final String input = "0A0F100503";
+        assertEquals("0A 0F 10 05 03", Strings.toChunks(input, 2));
+
+    }
+
+    @Test
+    public void toLines_Example_Success() {
+
+        final String input = "123456789";
+        assertEquals("123" + System.lineSeparator() + "456" + System.lineSeparator() + "789", Strings.toLines(input, 3));
+
+    }
+
+    @Test
     public void surround_Example_Success() {
 
         final String affix = "[#]";
@@ -54,7 +79,7 @@ public class StringsTest {
     @Test
     public void combine_NullValues_Success() {
 
-        assertEquals("", Strings.combine(null));
+        assertEquals("", Strings.combine((String) null));
 
     }
 
@@ -79,14 +104,14 @@ public class StringsTest {
     public void list_NullInputs_Success() {
 
         final String separator = ", ";
-        assertEquals("", Strings.list(separator, null));
+        assertEquals("", Strings.list(separator, (String) null));
 
     }
 
     @Test
     public void list_NullValues_Success() {
 
-        assertEquals("", Strings.list(null, null));
+        assertEquals("", Strings.list(null, (String) null));
 
     }
 

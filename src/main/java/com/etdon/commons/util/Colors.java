@@ -1,47 +1,6 @@
 package com.etdon.commons.util;
 
-public final class ColorUtils {
-
-    /**
-     * Packs three byte sized input color values into one integer (BGR). The output binary layout looks like this:
-     * 0000 0000 bbbb bbbb gggg gggg rrrr rrrr
-     * <p>
-     * The 4 most significant bits are unused as no alpha value is included.
-     *
-     * @param red the red color value
-     * @param green the green color value
-     * @param blue the blue color value
-     * @return the packed colors in one integer
-     * @deprecated replaced by {@link ColorUtils#pack(int, int, int)}
-     */
-    @Deprecated
-    public static int compress(final int red, final int green, final int blue) {
-
-        return ((blue & 0xFF) << 16) | ((green & 0xFF) << 8) | (red & 0xFF);
-
-    }
-
-    /**
-     * Unpacks the values of a packed color integer (BGR) into an integer array with a fixed size of 3. The indexes
-     * of the individual color values are as follows:
-     * <p>
-     * [0] red [1] green [2] blue
-     *
-     * @param input the packed color integer
-     * @return the unpacked integer array
-     * @deprecated replaced by {@link ColorUtils#unpack(int)}
-     */
-    @Deprecated
-    public static int[] decompress(final int input) {
-
-        final int[] output = new int[3];
-        output[0] = (input & 0xFF);
-        output[1] = ((input >>> 8) & 0xFF);
-        output[2] = ((input >>> 16) & 0xFF);
-
-        return output;
-
-    }
+public final class Colors {
 
     /**
      * Packs three byte sized input color values into one integer (RGB). The output binary layout looks like this:
@@ -97,7 +56,7 @@ public final class ColorUtils {
 
     }
 
-    private ColorUtils() {
+    private Colors() {
 
         throw new UnsupportedOperationException();
 

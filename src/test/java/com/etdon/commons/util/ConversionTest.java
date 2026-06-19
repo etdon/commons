@@ -11,28 +11,28 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ConversionTest {
 
     @Test
-    public void convertLongToByteArray_Example_Success() {
+    public void longToByteArray_Example_Success() {
 
         final long input = 3229223L;
-        final byte[] output = Conversion.convertLongToByteArray(input);
-        assertEquals("0000000000314627", ByteUtils.bytesToHexString(output));
+        final byte[] output = Conversion.longToByteArray(input);
+        assertEquals("0000000000314627", Bytes.toHexString(output));
 
     }
 
     @Test
-    public void convertByteArrayToLong_Example_Success() {
+    public void byteArrayToLong_Example_Success() {
 
         final byte[] input = new byte[]{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x13, 0x14};
-        final long output = Conversion.convertByteArrayToLong(input);
+        final long output = Conversion.byteArrayToLong(input);
         assertEquals(4884L, output);
 
     }
 
     @Test
-    public void convertByteArrayToLong_InvalidSize_Throws() {
+    public void byteArrayToLong_InvalidSize_Throws() {
 
         final byte[] input = new byte[]{0x0};
-        assertThrows(IllegalStateException.class, () -> Conversion.convertByteArrayToLong(input));
+        assertThrows(IllegalStateException.class, () -> Conversion.byteArrayToLong(input));
 
     }
 

@@ -1,6 +1,6 @@
 package com.etdon.commons.conditional;
 
-import com.etdon.commons.util.StringUtils;
+import com.etdon.commons.util.Strings;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -40,7 +40,7 @@ public final class Preconditions {
     public static <T> void checkNotNull(@Nullable final T reference, @Nullable final String message, @NotNull final Object... values) throws NullPointerException {
 
         if (reference == null)
-            throw new NullPointerException(message != null ? StringUtils.applyValues(message, values) : DEFAULT_CHECK_NOT_NULL_MESSAGE);
+            throw new NullPointerException(message != null ? Strings.applyValues(message, values) : DEFAULT_CHECK_NOT_NULL_MESSAGE);
 
     }
 
@@ -72,7 +72,7 @@ public final class Preconditions {
     public static <T> void checkNull(@Nullable final T reference, @Nullable final String message, @NotNull final Object... values) throws IllegalArgumentException {
 
         if (reference != null)
-            throw new IllegalArgumentException(message != null ? StringUtils.applyValues(message, values) : DEFAULT_CHECK_NULL_MESSAGE);
+            throw new IllegalArgumentException(message != null ? Strings.applyValues(message, values) : DEFAULT_CHECK_NULL_MESSAGE);
 
     }
 
@@ -102,7 +102,7 @@ public final class Preconditions {
     public static void checkState(final boolean state, @Nullable final String message, @NotNull final Object... values) throws IllegalStateException {
 
         if (!state)
-            throw new IllegalStateException(message != null ? StringUtils.applyValues(message, values) : DEFAULT_CHECK_STATE_MESSAGE);
+            throw new IllegalStateException(message != null ? Strings.applyValues(message, values) : DEFAULT_CHECK_STATE_MESSAGE);
 
     }
 
@@ -133,7 +133,7 @@ public final class Preconditions {
     public static void checkArgument(final boolean expression, @Nullable final String message, @NotNull final Object... values) throws IllegalArgumentException {
 
         if (!expression)
-            throw new IllegalArgumentException(message != null ? StringUtils.applyValues(message, values) : DEFAULT_CHECK_ARGUMENT_MESSAGE);
+            throw new IllegalArgumentException(message != null ? Strings.applyValues(message, values) : DEFAULT_CHECK_ARGUMENT_MESSAGE);
 
     }
 

@@ -10,34 +10,34 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public final class MapUtils {
+public final class Maps {
 
     @SafeVarargs
-    public static <K, V> Map<K, V> newMap(@NotNull final KeyValuePair<K, V>... pairs) {
+    public static <K, V> Map<K, V> of(@NotNull final KeyValuePair<K, V>... pairs) {
 
         Preconditions.checkNotNull(pairs);
-        return fillMap(new HashMap<>(), pairs);
+        return fill(new HashMap<>(), pairs);
 
     }
 
     @SafeVarargs
-    public static <K, V> Map<K, V> newLinkedMap(@NotNull final KeyValuePair<K, V>... pairs) {
+    public static <K, V> Map<K, V> ofLinked(@NotNull final KeyValuePair<K, V>... pairs) {
 
         Preconditions.checkNotNull(pairs);
-        return fillMap(new LinkedHashMap<>(), pairs);
+        return fill(new LinkedHashMap<>(), pairs);
 
     }
 
     @SafeVarargs
-    public static <K, V> Map<K, V> newConcurrentMap(@NotNull final KeyValuePair<K, V>... pairs) {
+    public static <K, V> Map<K, V> ofConcurrent(@NotNull final KeyValuePair<K, V>... pairs) {
 
         Preconditions.checkNotNull(pairs);
-        return fillMap(new ConcurrentHashMap<>(), pairs);
+        return fill(new ConcurrentHashMap<>(), pairs);
 
     }
 
     @SafeVarargs
-    public static <K, V> Map<K, V> fillMap(@NotNull final Map<K, V> map, @NotNull final KeyValuePair<K, V>... pairs) {
+    public static <K, V> Map<K, V> fill(@NotNull final Map<K, V> map, @NotNull final KeyValuePair<K, V>... pairs) {
 
         Preconditions.checkNotNull(map);
         Preconditions.checkNotNull(pairs);
@@ -61,7 +61,7 @@ public final class MapUtils {
 
     }
 
-    private MapUtils() {
+    private Maps() {
 
         throw new UnsupportedOperationException();
 

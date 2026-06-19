@@ -2,7 +2,7 @@ package com.etdon.commons.util;
 
 import java.nio.charset.Charset;
 
-public final class ByteUtils {
+public final class Bytes {
 
     public static final char[] DIGITS = {
             '0', '1', '2', '3', '4', '5',
@@ -13,7 +13,7 @@ public final class ByteUtils {
             'U', 'V', 'W', 'X', 'Y', 'Z'
     };
 
-    public static String byteToHexString(byte b) {
+    public static String toHexString(byte b) {
 
         final byte[] buffer = new byte[2];
         buffer[1] = (byte) DIGITS[b & 0xF];
@@ -23,21 +23,21 @@ public final class ByteUtils {
 
     }
 
-    public static String bytesToHexString(final byte[] bytes) {
+    public static String toHexString(final byte[] bytes) {
 
         final StringBuilder hexStringBuilder = new StringBuilder();
         for (final byte b : bytes)
-            hexStringBuilder.append(byteToHexString(b));
+            hexStringBuilder.append(toHexString(b));
 
         return hexStringBuilder.toString();
 
     }
 
-    public static String bytesToHexString(final byte[] bytes, final int split) {
+    public static String toHexString(final byte[] bytes, final int split) {
 
         final StringBuilder hexStringBuilder = new StringBuilder();
         for (int i = 0; i < bytes.length; i++) {
-            hexStringBuilder.append(byteToHexString(bytes[i]));
+            hexStringBuilder.append(toHexString(bytes[i]));
             if ((i + 1) % split == 0 && (i + 1) < bytes.length)
                 hexStringBuilder.append(' ');
         }
@@ -46,13 +46,13 @@ public final class ByteUtils {
 
     }
 
-    public static String byteToBinaryString(byte b) {
+    public static String toBinaryString(byte b) {
 
-        return byteToBinaryString(b, 4);
+        return toBinaryString(b, 4);
 
     }
 
-    public static String byteToBinaryString(byte b, final int split) {
+    public static String toBinaryString(byte b, final int split) {
 
         final StringBuilder binaryStringBuilder = new StringBuilder(Byte.SIZE);
         for (int i = 0; i < Byte.SIZE; i++) {
@@ -65,22 +65,7 @@ public final class ByteUtils {
 
     }
 
-    public static int estimateVarLongByteSize(long input) {
-
-        int byteCount = 0;
-        if (input == 0)
-            return 1;
-
-        while (input != 0) {
-            input >>>= 7;
-            byteCount++;
-        }
-
-        return byteCount;
-
-    }
-
-    private ByteUtils() {
+    private Bytes() {
 
         throw new UnsupportedOperationException();
 

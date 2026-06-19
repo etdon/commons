@@ -13,7 +13,7 @@ public final class Conversion {
      * @param input the input
      * @return the byte array
      */
-    public static byte[] convertLongToByteArray(final long input) {
+    public static byte[] longToByteArray(final long input) {
 
         final byte[] output = new byte[8];
         for (int i = 0; i < 7; i++)
@@ -29,7 +29,7 @@ public final class Conversion {
      * @param input the input
      * @return the byte array
      */
-    public static long convertByteArrayToLong(final byte[] input) {
+    public static long byteArrayToLong(final byte[] input) {
 
         Preconditions.checkState(input.length == 8, "The provided byte array does not have a length of 8.");
         long output = 0;

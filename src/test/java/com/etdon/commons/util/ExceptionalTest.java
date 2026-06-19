@@ -24,7 +24,7 @@ public class ExceptionalTest {
     @Test
     public void of_NullTypeAndMessage_Throws() {
 
-        assertThrows(NullPointerException.class, () -> Exceptional.of(null, null));
+        assertThrows(NullPointerException.class, () -> Exceptional.of(null, (Object) null));
 
     }
 

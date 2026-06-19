@@ -393,16 +393,6 @@ public class ByteReader {
 
     }
 
-    /**
-     * @deprecated replaced by {@link ByteReader#of(byte[])}
-     */
-    @Deprecated
-    public static ByteReader from(final byte[] bytes) {
-
-        return new ByteReader(bytes);
-
-    }
-
     public static ByteReader of(final byte[] bytes) {
 
         return new ByteReader(bytes);

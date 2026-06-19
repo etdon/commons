@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.function.Function;
 
 /**
  * Static factory for exceptions with formatted messages. Not suited for use in performance critical methods.
@@ -32,6 +33,8 @@ public final class Exceptional {
      * Creates a new exception instance of the provided type if a string message accepting constructor is found. The
      * provided message is being formatted replacing all placeholders with the provided values before it's being handed
      * to the target constructor.
+     * <p>
+     * In most cases the {@link Exceptional#of(Function, String, Object...)} overload is preferred.
      *
      * @param type the exception type class
      * @param message the message
@@ -49,13 +52,36 @@ public final class Exceptional {
         Preconditions.checkNotNull(values);
         try {
             final Constructor<T> exception = type.getConstructor(String.class);
-            return exception.newInstance(StringUtils.applyValues(message, values));
+            return exception.newInstance(Strings.applyValues(message, values));
         } catch (final NoSuchMethodException |
                        InvocationTargetException |
                        InstantiationException |
                        IllegalAccessException ex) {
             throw new RuntimeException(ex);
         }
+
+    }
+
+    /**
+     * Creates a new exception instance using the provided factory. The provided message is being formatted replacing
+     * all placeholders with the provided values before it's being handed to the target factory.
+     * <p>
+     * In most cases this overload is preferred over {@link Exceptional#of(Class, String, Object...)}.
+     *
+     * @param factory the exception factory
+     * @param message the message
+     * @param values the placeholder values
+     * @return the exception instance
+     * @param <T> the exception type
+     */
+    public static <T extends Exception> T of(@NotNull final Function<String, T> factory,
+                                             @NotNull final String message,
+                                             @NotNull final Object... values) {
+
+        Preconditions.checkNotNull(factory);
+        Preconditions.checkNotNull(message);
+        Preconditions.checkNotNull(values);
+        return factory.apply(Strings.applyValues(message, values));
 
     }
 

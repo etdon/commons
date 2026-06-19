@@ -3,7 +3,7 @@ package com.etdon.commons.util;
 import com.etdon.commons.conditional.Preconditions;
 import org.jetbrains.annotations.NotNull;
 
-public final class EnumUtils {
+public final class Enums {
 
     /**
      * Find the enum value that follows the provided current enum value in the declaration order of the enum
@@ -14,7 +14,7 @@ public final class EnumUtils {
      * @param <T>          the enum type
      * @return the following value
      */
-    public static <T extends Enum<T>> T findNextEnumValue(@NotNull final Class<T> enumClass, @NotNull final T currentValue) {
+    public static <T extends Enum<T>> T findNextValue(@NotNull final Class<T> enumClass, @NotNull final T currentValue) {
 
         Preconditions.checkNotNull(enumClass);
         Preconditions.checkNotNull(currentValue);
@@ -36,7 +36,7 @@ public final class EnumUtils {
 
     }
 
-    private EnumUtils() {
+    private Enums() {
 
         throw new UnsupportedOperationException();
 
