@@ -10,6 +10,7 @@ public final class Preconditions {
     private static final String DEFAULT_CHECK_NOT_NULL_MESSAGE = "Reference was null.";
     private static final String DEFAULT_CHECK_NULL_MESSAGE = "Reference was not null.";
     private static final String DEFAULT_CHECK_STATE_MESSAGE = "State was false.";
+    private static final String DEFAULT_CHECK_ARGUMENT_MESSAGE = "Argument expression was false.";
 
     /**
      * Throws a {@link NullPointerException} if the provided reference is <code>null</code>.
@@ -79,7 +80,7 @@ public final class Preconditions {
      * Throws an {@link IllegalStateException} if the provided state is <code>false</code>.
      *
      * @param state the state
-     * @throws IllegalStateException If the provided state is <code>false</code>
+     * @throws IllegalStateException if the provided state is <code>false</code>
      */
     @Contract("false -> fail")
     public static void checkState(final boolean state) throws IllegalStateException {
@@ -102,6 +103,37 @@ public final class Preconditions {
 
         if (!state)
             throw new IllegalStateException(message != null ? StringUtils.applyValues(message, values) : DEFAULT_CHECK_STATE_MESSAGE);
+
+    }
+
+    /**
+     * Throws an {@link IllegalArgumentException} if the provided expression is <code>false</code>.
+     *
+     * @param expression the expression
+     * @throws IllegalArgumentException if the provided expression is <code>false</code>
+     */
+    @Contract("false -> fail")
+    public static void checkArgument(final boolean expression) throws IllegalArgumentException {
+
+        if (!expression)
+            throw new IllegalArgumentException();
+
+    }
+
+    /**
+     * Throws an {@link IllegalArgumentException} with the provided message if the provided expression is
+     * <code>false</code>.
+     *
+     * @param expression the expression
+     * @param message    the message
+     * @param values     the message placeholder values
+     * @throws IllegalArgumentException if the provided expression is <code>false</code>
+     */
+    @Contract("false, _, _ -> fail")
+    public static void checkArgument(final boolean expression, @Nullable final String message, @NotNull final Object... values) throws IllegalArgumentException {
+
+        if (!expression)
+            throw new IllegalArgumentException(message != null ? StringUtils.applyValues(message, values) : DEFAULT_CHECK_ARGUMENT_MESSAGE);
 
     }
 

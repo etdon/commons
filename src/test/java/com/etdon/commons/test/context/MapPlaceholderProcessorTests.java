@@ -8,6 +8,11 @@ import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Certain unit tests check for a {@link RuntimeException} instead of a {@link NullPointerException} thrown by
+ * {@link com.etdon.commons.conditional.Preconditions} to avoid collision with the {@link org.jetbrains.annotations.NotNull}
+ * null check that throws a {@link IllegalArgumentException} instead, which is not relevant after compilation.
+ */
 public class MapPlaceholderProcessorTests {
 
     @Test
@@ -16,7 +21,7 @@ public class MapPlaceholderProcessorTests {
         final Map<String, String> dirty = new HashMap<>();
         dirty.put("identifier", null);
         dirty.put(null, "value");
-        assertThrows(IllegalArgumentException.class, () -> new MapPlaceholderProcessor(dirty));
+        assertThrows(RuntimeException.class, () -> new MapPlaceholderProcessor(dirty));
 
     }
 
@@ -54,8 +59,8 @@ public class MapPlaceholderProcessorTests {
     public void registerPlaceholder_NullIdentifierOrValue_Throws() {
 
         final MapPlaceholderProcessor mapPlaceholderProcessor = new MapPlaceholderProcessor();
-        assertThrows(IllegalArgumentException.class, () -> mapPlaceholderProcessor.registerPlaceholder(null, "value"));
-        assertThrows(IllegalArgumentException.class, () -> mapPlaceholderProcessor.registerPlaceholder("identifier", null));
+        assertThrows(RuntimeException.class, () -> mapPlaceholderProcessor.registerPlaceholder(null, "value"));
+        assertThrows(RuntimeException.class, () -> mapPlaceholderProcessor.registerPlaceholder("identifier", null));
 
     }
 
