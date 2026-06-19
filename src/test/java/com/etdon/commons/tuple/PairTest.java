@@ -20,11 +20,20 @@ public class PairTest {
     }
 
     @Test
-    public void equals_NullKeyValueNotEquals_Success() {
+    public void setKey_NullKey_Success() {
 
-        final Pair<String, String> first = Pair.of("key", "value");
-        final Pair<String, String> second = Pair.of(null, null);
-        assertNotEquals(first, second);
+        final Pair<String, String> pair = Pair.of("key", "value");
+        pair.setKey(null);
+        assertNull(pair.getKey());
+
+    }
+
+    @Test
+    public void setValue_NullValue_Success() {
+
+        final Pair<String, String> pair = Pair.of("key", "value");
+        pair.setValue(null);
+        assertNull(pair.getValue());
 
     }
 

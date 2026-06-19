@@ -4,6 +4,8 @@ import com.etdon.commons.conditional.Preconditions;
 import com.etdon.commons.util.Exceptional;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
+
 /**
  * Byte buffer implementation used to construct byte arrays in the endianness of choice. Put methods exist for all
  * primitive types.
@@ -180,13 +182,27 @@ public class ByteBuffer {
      */
     public byte[] get() {
 
-        if (this.buffer.length != this.size) {
-            final byte[] resizedBuffer = new byte[this.size];
-            System.arraycopy(this.buffer, 0, resizedBuffer, 0, this.size);
-            this.buffer = resizedBuffer;
-        }
+        final byte[] resizedBuffer = new byte[this.size];
+        System.arraycopy(this.buffer, 0, resizedBuffer, 0, this.size);
 
-        return this.buffer;
+        return resizedBuffer;
+
+    }
+
+    /**
+     * Checks the internal byte array against the provided byte array for equality.
+     *
+     * @param other the other byte array
+     * @return <code>true</code> if the contents are equal, <code>false</code> otherwise
+     */
+    public boolean contentEquals(final byte[] other) {
+
+        if (this.size != other.length)
+            return false;
+
+        final byte[] resizedBuffer = new byte[this.size];
+        System.arraycopy(this.buffer, 0, resizedBuffer, 0, this.size);
+        return Arrays.equals(resizedBuffer, other);
 
     }
 
