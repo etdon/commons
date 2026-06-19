@@ -1,7 +1,6 @@
 package com.etdon.commons.trait.impl.string;
 
 import com.etdon.commons.util.Strings;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -17,7 +16,7 @@ public class ContainsTraitTest {
 
         final String input = "Hello World!";
         final String target = "World";
-        Assertions.assertTrue(Strings.checkTraits(input, StringTrait.CONTAINS.apply(target)));
+        assertTrue(Strings.checkTraits(input, StringTrait.CONTAINS.apply(target)));
 
     }
 
