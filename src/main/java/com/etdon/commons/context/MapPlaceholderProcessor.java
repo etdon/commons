@@ -7,11 +7,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
+import java.util.function.Supplier;
 
 public class MapPlaceholderProcessor extends PlaceholderProcessor {
 
     private final Map<String, String> placeholders = new HashMap<>();
+    private final Map<String, Supplier<String>> valueSuppliers = new HashMap<>();
 
     public MapPlaceholderProcessor() {
 
@@ -67,6 +68,24 @@ public class MapPlaceholderProcessor extends PlaceholderProcessor {
     }
 
     /**
+     * Registers a placeholder with the provided non-<code>null</code> identifier and value supplier. During the
+     * processing phase value suppliers are invoked to get the actual placeholder value. The value provided by the
+     * supplier is <b>not</b> being cached.
+     *
+     * @param identifier the identifier
+     * @param valueSupplier the value supplier
+     * @return the previously registered value for the provided identifier or <code>null</code> if there was none
+     */
+    public String registerPlaceholder(@NotNull final String identifier, @NotNull final Supplier<String> valueSupplier) {
+
+        Preconditions.checkNotNull(identifier);
+        Preconditions.checkNotNull(valueSupplier);
+        this.valueSuppliers.put(identifier, valueSupplier);
+        return this.placeholders.put(identifier, null);
+
+    }
+
+    /**
      * Unregisters the placeholder with the provided non-<code>null</code> identifier if present.
      *
      * @param identifier the identifier
@@ -76,6 +95,7 @@ public class MapPlaceholderProcessor extends PlaceholderProcessor {
     public String unregisterPlaceholder(@NotNull final String identifier) {
 
         Preconditions.checkNotNull(identifier);
+        this.valueSuppliers.remove(identifier);
         return this.placeholders.remove(identifier);
 
     }
@@ -103,10 +123,10 @@ public class MapPlaceholderProcessor extends PlaceholderProcessor {
     }
 
     /**
-     * Scans the provided input for placeholder identifiers and replaces them with their registered value if present.
-     * If a placeholder identifier is found that isn't registered a re-constructed version of the found placeholder
-     * identifier created with {@link PlaceholderProcessor#createPlaceholder(String)} will be appended to the output
-     * instead.
+     * Scans the provided input for placeholder identifiers and replaces them with their registered value or the
+     * evaluated value of the registered supplier if present. If a placeholder identifier is found that isn't
+     * registered a re-constructed version of the found placeholder identifier created with {@link PlaceholderProcessor#createPlaceholder(String)}
+     * will be appended to the output instead.
      *
      * @param input the input
      * @return a new string based on the input with its placeholders replaced
@@ -133,12 +153,25 @@ public class MapPlaceholderProcessor extends PlaceholderProcessor {
                 continue;
             }
 
-            if (c == super.getSettings().getPlaceholderIdentifier() && previousChar != Constants.ESCAPE_IDENTIFIER) {
-                if (chars.length > i + 1 && chars[++i] == super.getSettings().getValueStartIdentifier())
+            if (!readingIdentifier && c == super.getSettings().getPlaceholderIdentifier() && previousChar != Constants.ESCAPE_IDENTIFIER) {
+                if (chars.length > i + 1 && chars[i + 1] == super.getSettings().getValueStartIdentifier()) {
+                    i += 1;
                     readingIdentifier = true;
+                } else {
+                    output.append(c);
+                }
             } else if (readingIdentifier && c == super.getSettings().getValueEndIdentifier()) {
-                output.append(Optional.ofNullable(this.placeholders.get(identifier.toString()))
-                        .orElse(super.createPlaceholder(identifier.toString())));
+                final String value = this.placeholders.get(identifier.toString());
+                if (value != null) {
+                    output.append(value);
+                } else {
+                    final Supplier<String> valueSupplier = this.valueSuppliers.get(identifier.toString());
+                    if (valueSupplier != null) {
+                        output.append(valueSupplier.get());
+                    } else {
+                        output.append(super.createPlaceholder(identifier.toString()));
+                    }
+                }
                 identifier.setLength(0);
                 readingIdentifier = false;
             } else {

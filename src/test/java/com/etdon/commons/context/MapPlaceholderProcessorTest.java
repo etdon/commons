@@ -2,8 +2,7 @@ package com.etdon.commons.context;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -58,11 +57,51 @@ public class MapPlaceholderProcessorTest {
     }
 
     @Test
+    public void process_ValueSupplierNonCaching_Success() {
+
+        final Deque<String> queue = new ArrayDeque<>();
+        queue.add("first");
+        queue.add("second");
+
+        final MapPlaceholderProcessor mapPlaceholderProcessor = new MapPlaceholderProcessor();
+        mapPlaceholderProcessor.registerPlaceholder("identifier", queue::pop);
+        assertEquals("first second", mapPlaceholderProcessor.process("${identifier} ${identifier}"));
+
+    }
+
+    @Test
+    public void process_UnusualFormat_Success() {
+
+        final MapPlaceholderProcessor mapPlaceholderProcessor = new MapPlaceholderProcessor();
+        mapPlaceholderProcessor.registerPlaceholder("identifier", "value");
+        assertEquals("${$}}$$}{}", mapPlaceholderProcessor.process("${$}}$$}{}"));
+
+    }
+
+    @Test
+    public void process_Nested_Success() {
+
+        final MapPlaceholderProcessor mapPlaceholderProcessor = new MapPlaceholderProcessor();
+        mapPlaceholderProcessor.registerPlaceholder("identifier", "value");
+        assertEquals("${${${${}}}}", mapPlaceholderProcessor.process("${${${${}}}}"));
+
+    }
+
+    @Test
+    public void process_EscapeEndIdentifier_Success() {
+
+        final MapPlaceholderProcessor mapPlaceholderProcessor = new MapPlaceholderProcessor();
+        mapPlaceholderProcessor.registerPlaceholder("identifier", "value");
+        assertEquals("${}}}}", mapPlaceholderProcessor.process("${\\}\\}\\}}"));
+
+    }
+
+    @Test
     public void registerPlaceholder_NullIdentifierOrValue_Throws() {
 
         final MapPlaceholderProcessor mapPlaceholderProcessor = new MapPlaceholderProcessor();
         assertThrows(RuntimeException.class, () -> mapPlaceholderProcessor.registerPlaceholder(null, "value"));
-        assertThrows(RuntimeException.class, () -> mapPlaceholderProcessor.registerPlaceholder("identifier", null));
+        assertThrows(RuntimeException.class, () -> mapPlaceholderProcessor.registerPlaceholder("identifier", (String) null));
 
     }
 
