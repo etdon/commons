@@ -8,7 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.function.Function;
 
 /**
- * Static factory for exceptions with formatted messages. Not suited for use in performance critical methods.
+ * Static factory for exceptions with formatted messages.
  */
 @NotNullByDefault
 public final class Exceptional {

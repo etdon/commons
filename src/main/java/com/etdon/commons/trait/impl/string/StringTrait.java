@@ -5,6 +5,9 @@ import com.etdon.commons.trait.Trait;
 import java.util.Objects;
 import java.util.function.Function;
 
+/**
+ * Contains string related trait implementation constants.
+ */
 public final class StringTrait {
 
     public static final Trait<CharSequence> NULL = Objects::isNull;
