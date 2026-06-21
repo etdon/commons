@@ -4,15 +4,16 @@ import com.etdon.commons.conditional.Preconditions;
 import com.etdon.commons.constant.Constants;
 import com.etdon.commons.trait.Trait;
 import com.etdon.commons.trait.Traits;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNullByDefault;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@NotNullByDefault
 public final class Strings {
 
-    public static String applyValues(@NotNull final String input, @NotNull final Object... values) {
+    public static String applyValues(final String input, final Object... values) {
 
         Preconditions.checkNotNull(input);
         Preconditions.checkNotNull(values);
@@ -44,7 +45,7 @@ public final class Strings {
 
     }
 
-    public static List<String> split(@NotNull final String input, final char splitChar) {
+    public static List<String> split(final String input, final char splitChar) {
 
         Preconditions.checkNotNull(input);
         final List<String> output = new ArrayList<>(5);
@@ -63,7 +64,7 @@ public final class Strings {
 
     }
 
-    public static String repeat(@NotNull final String input, final int count) {
+    public static String repeat(final String input, final int count) {
 
         Preconditions.checkNotNull(input);
         if (count <= 1)
@@ -77,13 +78,13 @@ public final class Strings {
 
     }
 
-    public static String toChunks(@NotNull final String input, final int chunkSize) {
+    public static String toChunks(final String input, final int chunkSize) {
 
         return toChunks(input, chunkSize, ' ');
 
     }
 
-    public static String toChunks(@NotNull final String input, final int chunkSize, final char separator) {
+    public static String toChunks(final String input, final int chunkSize, final char separator) {
 
         final StringBuilder output = new StringBuilder();
         final char[] chars = input.toCharArray();
@@ -97,7 +98,7 @@ public final class Strings {
 
     }
 
-    public static String toLines(@NotNull final String input, final int lineSize) {
+    public static String toLines(final String input, final int lineSize) {
 
         final StringBuilder output = new StringBuilder();
         final char[] chars = input.toCharArray();
@@ -111,14 +112,12 @@ public final class Strings {
 
     }
 
-    @NotNull
     public static String surround(@Nullable final String affix, @Nullable final String input) {
 
         return combine(affix, input, affix);
 
     }
 
-    @NotNull
     public static String combine(@Nullable final String... inputs) {
 
         if (inputs == null || inputs.length == 0)
@@ -134,7 +133,6 @@ public final class Strings {
 
     }
 
-    @NotNull
     public static String list(@Nullable final String separator, @Nullable final String... inputs) {
 
         if (inputs == null || inputs.length == 0)

@@ -2,7 +2,8 @@ package com.etdon.commons.reflection;
 
 import com.etdon.commons.builder.FluentBuilder;
 import com.etdon.commons.conditional.Preconditions;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNullByDefault;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +23,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
+@NotNullByDefault
 public class ClassLoaderResolver {
 
     public final static String MANIFEST_FILE = "META-INF/MANIFEST.MF";
@@ -33,14 +35,14 @@ public class ClassLoaderResolver {
     private final Set<File> processedFiles = new HashSet<>();
     private final Set<String> resolvedClassPaths = new HashSet<>();
 
-    public ClassLoaderResolver(@NotNull final ClassLoader classLoader) {
+    public ClassLoaderResolver(final ClassLoader classLoader) {
 
         this(classLoader, new HashSet<>());
 
     }
 
-    public ClassLoaderResolver(@NotNull final ClassLoader classLoader,
-                               @NotNull final Set<String> ignoredPackages) {
+    public ClassLoaderResolver(final ClassLoader classLoader,
+                               final Set<String> ignoredPackages) {
 
         Preconditions.checkNotNull(classLoader);
         Preconditions.checkNotNull(ignoredPackages);
@@ -75,7 +77,7 @@ public class ClassLoaderResolver {
 
     }
 
-    public Set<String> getResolvedClassPaths(@NotNull final String packageName) {
+    public Set<String> getResolvedClassPaths(final String packageName) {
 
         Preconditions.checkNotNull(packageName);
         if (this.ignoredPackages.contains(packageName))
@@ -91,7 +93,7 @@ public class ClassLoaderResolver {
 
     }
 
-    public Set<String> getResolvedClassPathsDeep(@NotNull final String packageName) {
+    public Set<String> getResolvedClassPathsDeep(final String packageName) {
 
         Preconditions.checkNotNull(packageName);
         if (this.ignoredPackages.contains(packageName))
@@ -178,7 +180,7 @@ public class ClassLoaderResolver {
 
     }
 
-    private Set<File> getJarFileFiles(final File file, final Manifest manifest) throws MalformedURLException {
+    private Set<File> getJarFileFiles(final File file, @Nullable final Manifest manifest) throws MalformedURLException {
 
         final Set<File> classFiles = new HashSet<>();
         if (manifest == null)
@@ -256,13 +258,13 @@ public class ClassLoaderResolver {
 
     }
 
-    public static ClassLoaderResolver of(@NotNull final ClassLoader classLoader) {
+    public static ClassLoaderResolver of(final ClassLoader classLoader) {
 
         return new ClassLoaderResolver(classLoader);
 
     }
 
-    public static ClassLoaderResolver of(@NotNull final ClassLoader classLoader, @NotNull final Set<String> ignoredPackages) {
+    public static ClassLoaderResolver of(final ClassLoader classLoader, final Set<String> ignoredPackages) {
 
         return new ClassLoaderResolver(classLoader, ignoredPackages);
 
@@ -276,6 +278,7 @@ public class ClassLoaderResolver {
 
     public static class Builder implements FluentBuilder<ClassLoaderResolver> {
 
+        @Nullable
         private ClassLoader classLoader;
         private final Set<String> ignoredPackages = new HashSet<>();
 
@@ -283,7 +286,7 @@ public class ClassLoaderResolver {
 
         }
 
-        public Builder classLoader(@NotNull final ClassLoader classLoader) {
+        public Builder classLoader(final ClassLoader classLoader) {
 
             Preconditions.checkNotNull(classLoader);
             this.classLoader = classLoader;
@@ -291,7 +294,7 @@ public class ClassLoaderResolver {
 
         }
 
-        public Builder ignorePackage(@NotNull final String packageName) {
+        public Builder ignorePackage(final String packageName) {
 
             Preconditions.checkNotNull(packageName);
             this.ignoredPackages.add(packageName);
@@ -299,7 +302,7 @@ public class ClassLoaderResolver {
 
         }
 
-        public Builder ignorePackages(@NotNull final Set<String> ignoredPackages) {
+        public Builder ignorePackages(final Set<String> ignoredPackages) {
 
             Preconditions.checkNotNull(ignoredPackages);
             this.ignoredPackages.addAll(ignoredPackages);
@@ -307,7 +310,6 @@ public class ClassLoaderResolver {
 
         }
 
-        @NotNull
         @Override
         public ClassLoaderResolver build() {
 

@@ -2,7 +2,7 @@ package com.etdon.commons.manage;
 
 import com.etdon.commons.conditional.Preconditions;
 import com.etdon.commons.util.Exceptional;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNullByDefault;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Constructor;
@@ -16,6 +16,7 @@ import java.util.Map;
  * @param <K> The key type.
  * @param <V> The value type.
  */
+@NotNullByDefault
 public abstract class Registry<K, V> {
 
     private final Map<K, V> registered;
@@ -35,7 +36,7 @@ public abstract class Registry<K, V> {
      *
      * @param map The map.
      */
-    public Registry(@NotNull final Map<K, V> map) {
+    public Registry(final Map<K, V> map) {
 
         Preconditions.checkNotNull(map);
         this.registered = map;
@@ -48,7 +49,7 @@ public abstract class Registry<K, V> {
      * @param key   The key.
      * @param value The value.
      */
-    public void register(@NotNull final K key, @Nullable final V value) {
+    public void register(final K key, @Nullable final V value) {
 
         Preconditions.checkNotNull(key);
         this.registered.put(key, value);
@@ -60,7 +61,7 @@ public abstract class Registry<K, V> {
      *
      * @param key The key.
      */
-    public void unregister(@NotNull final K key) {
+    public void unregister(final K key) {
 
         Preconditions.checkNotNull(key);
         this.registered.remove(key);
@@ -74,7 +75,7 @@ public abstract class Registry<K, V> {
      * @return The stored value or <code>null</code> if the key is not present.
      */
     @Nullable
-    public V get(@NotNull final K key) {
+    public V get(final K key) {
 
         Preconditions.checkNotNull(key);
         return this.registered.get(key);
@@ -87,7 +88,7 @@ public abstract class Registry<K, V> {
      * @param key The key.
      * @return <code>true</code> if the provided key is in the registry, <code>false</code> otherwise.
      */
-    public boolean containsKey(@NotNull final K key) {
+    public boolean containsKey(final K key) {
 
         Preconditions.checkNotNull(key);
         return this.registered.containsKey(key);
@@ -100,7 +101,7 @@ public abstract class Registry<K, V> {
      * @param value The value.
      * @return <code>true</code> if the provided value is in the registry, <code>false</code> otherwise.
      */
-    public boolean containsValue(@NotNull final V value) {
+    public boolean containsValue(final V value) {
 
         Preconditions.checkNotNull(value);
         return this.registered.containsValue(value);
@@ -112,7 +113,6 @@ public abstract class Registry<K, V> {
      *
      * @return The map copy.
      */
-    @NotNull
     public Map<K, V> getInternalMapCopy() {
 
         return this.getInternalMapCopy(false);
@@ -130,7 +130,6 @@ public abstract class Registry<K, V> {
      * @return The map copy or <code>null</code> if the precise creation failed.
      */
     @SuppressWarnings("unchecked")
-    @NotNull
     public Map<K, V> getInternalMapCopy(final boolean precise) {
 
         if (precise) {

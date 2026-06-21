@@ -1,8 +1,9 @@
 package com.etdon.commons.io;
 
 import com.etdon.commons.conditional.Preconditions;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNullByDefault;
 
+@NotNullByDefault
 public class ByteReader {
 
     private ByteOrder byteOrder = ByteOrder.LITTLE_ENDIAN;
@@ -15,7 +16,7 @@ public class ByteReader {
 
     }
 
-    public ByteReader(@NotNull final ByteOrder byteOrder,
+    public ByteReader(final ByteOrder byteOrder,
                       final byte[] bytes) {
 
         Preconditions.checkNotNull(byteOrder);
@@ -68,7 +69,7 @@ public class ByteReader {
      * @param byteOrder The target byte order.
      * @return The auto-closeable explorer session.
      */
-    public Explorer explore(@NotNull final ByteOrder byteOrder) {
+    public Explorer explore(final ByteOrder byteOrder) {
 
         return Explorer.of(this, byteOrder);
 
@@ -83,7 +84,7 @@ public class ByteReader {
      * @param offset    The target offset.
      * @return The auto-closeable explorer session.
      */
-    public Explorer explore(@NotNull final ByteOrder byteOrder, final int offset) {
+    public Explorer explore(final ByteOrder byteOrder, final int offset) {
 
         return Explorer.of(this, byteOrder, offset);
 
@@ -369,7 +370,7 @@ public class ByteReader {
 
     }
 
-    public void setByteOrder(@NotNull final ByteOrder byteOrder) {
+    public void setByteOrder(final ByteOrder byteOrder) {
 
         Preconditions.checkNotNull(byteOrder);
         this.byteOrder = byteOrder;
@@ -399,7 +400,7 @@ public class ByteReader {
 
     }
 
-    public static ByteReader of(@NotNull final ByteOrder byteOrder, final byte[] bytes) {
+    public static ByteReader of(final ByteOrder byteOrder, final byte[] bytes) {
 
         Preconditions.checkNotNull(byteOrder);
         return new ByteReader(byteOrder, bytes);
@@ -430,7 +431,6 @@ public class ByteReader {
 
         }
 
-        @NotNull
         public ByteOrder getRetreatByteOrder() {
 
             return this.retreatByteOrder;
@@ -443,19 +443,19 @@ public class ByteReader {
 
         }
 
-        public static Explorer of(@NotNull final ByteReader byteReader, final int targetOffset) {
+        public static Explorer of(final ByteReader byteReader, final int targetOffset) {
 
             return of(byteReader, byteReader.getByteOrder(), targetOffset);
 
         }
 
-        public static Explorer of(@NotNull final ByteReader byteReader, @NotNull final ByteOrder targetByteOrder) {
+        public static Explorer of(final ByteReader byteReader, final ByteOrder targetByteOrder) {
 
             return of(byteReader, targetByteOrder, byteReader.getOffset());
 
         }
 
-        public static Explorer of(@NotNull final ByteReader byteReader, @NotNull final ByteOrder targetByteOrder, final int targetOffset) {
+        public static Explorer of(final ByteReader byteReader, final ByteOrder targetByteOrder, final int targetOffset) {
 
             Preconditions.checkNotNull(byteReader);
             Preconditions.checkNotNull(targetByteOrder);

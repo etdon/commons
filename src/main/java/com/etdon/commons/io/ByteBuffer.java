@@ -2,7 +2,7 @@ package com.etdon.commons.io;
 
 import com.etdon.commons.conditional.Preconditions;
 import com.etdon.commons.util.Exceptional;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNullByDefault;
 
 import java.util.Arrays;
 
@@ -10,6 +10,7 @@ import java.util.Arrays;
  * Byte buffer implementation used to construct byte arrays in the endianness of choice. Put methods exist for all
  * primitive types.
  */
+@NotNullByDefault
 public class ByteBuffer {
 
     private ByteOrder byteOrder = ByteOrder.LITTLE_ENDIAN;
@@ -226,7 +227,7 @@ public class ByteBuffer {
      *
      * @param byteOrder the byte order
      */
-    public void setByteOrder(@NotNull final ByteOrder byteOrder) {
+    public void setByteOrder(final ByteOrder byteOrder) {
 
         Preconditions.checkNotNull(byteOrder);
         this.byteOrder = byteOrder;

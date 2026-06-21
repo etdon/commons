@@ -2,12 +2,13 @@ package com.etdon.commons.trait.impl.annotation;
 
 import com.etdon.commons.conditional.Preconditions;
 import com.etdon.commons.trait.Trait;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNullByDefault;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 
+@NotNullByDefault
 public final class AnnotatedTrait implements Trait<AnnotatedElement> {
 
     private final Class<? extends Annotation> type;
@@ -28,14 +29,13 @@ public final class AnnotatedTrait implements Trait<AnnotatedElement> {
 
     }
 
-    @NotNull
     public Class<? extends Annotation> getType() {
 
         return this.type;
 
     }
 
-    public static AnnotatedTrait of(@NotNull final Class<? extends Annotation> type) {
+    public static AnnotatedTrait of(final Class<? extends Annotation> type) {
 
         Preconditions.checkNotNull(type);
         return new AnnotatedTrait(type);

@@ -1,12 +1,12 @@
 package com.etdon.commons.util;
 
 import com.etdon.commons.conditional.Preconditions;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNullByDefault;
 
+@NotNullByDefault
 public final class Numbers {
 
-    @NotNull
-    public static String toHexString(@NotNull final Number input) {
+    public static String toHexString(final Number input) {
 
         Preconditions.checkNotNull(input);
         final StringBuilder stringBuilder = new StringBuilder();

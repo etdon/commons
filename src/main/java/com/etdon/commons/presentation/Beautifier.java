@@ -1,8 +1,9 @@
 package com.etdon.commons.presentation;
 
 import com.etdon.commons.conditional.Preconditions;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNullByDefault;
 
+@NotNullByDefault
 public final class Beautifier {
 
     /**
@@ -15,7 +16,7 @@ public final class Beautifier {
      * @param input The enum value.
      * @return The beautified string representation.
      */
-    public static String beautifyEnum(@NotNull final Enum<?> input) {
+    public static String beautifyEnum(final Enum<?> input) {
 
         Preconditions.checkNotNull(input);
         final char[] chars = input.name().toCharArray();

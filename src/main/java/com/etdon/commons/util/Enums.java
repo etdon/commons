@@ -1,8 +1,9 @@
 package com.etdon.commons.util;
 
 import com.etdon.commons.conditional.Preconditions;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNullByDefault;
 
+@NotNullByDefault
 public final class Enums {
 
     /**
@@ -14,11 +15,10 @@ public final class Enums {
      * @param <T>          the enum type
      * @return the following value
      */
-    public static <T extends Enum<T>> T findNextValue(@NotNull final Class<T> enumClass, @NotNull final T currentValue) {
+    public static <T extends Enum<T>> T findNextValue(final Class<T> enumClass, final T currentValue) {
 
         Preconditions.checkNotNull(enumClass);
         Preconditions.checkNotNull(currentValue);
-
         final T[] values = enumClass.getEnumConstants();
         T nextValue = currentValue;
         for (int i = 0; i < values.length; i++) {

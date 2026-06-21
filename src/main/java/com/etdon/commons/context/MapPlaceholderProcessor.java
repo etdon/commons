@@ -2,36 +2,37 @@ package com.etdon.commons.context;
 
 import com.etdon.commons.conditional.Preconditions;
 import com.etdon.commons.constant.Constants;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNullByDefault;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+@NotNullByDefault
 public class MapPlaceholderProcessor extends PlaceholderProcessor {
 
-    private final Map<String, String> placeholders = new HashMap<>();
+    private final Map<String, @Nullable String> placeholders = new HashMap<>();
     private final Map<String, Supplier<String>> valueSuppliers = new HashMap<>();
 
     public MapPlaceholderProcessor() {
 
     }
 
-    public MapPlaceholderProcessor(@NotNull final Settings settings) {
+    public MapPlaceholderProcessor(final Settings settings) {
 
         super(settings);
 
     }
 
-    public MapPlaceholderProcessor(@NotNull final Map<String, String> placeholders) {
+    public MapPlaceholderProcessor(final Map<String, String> placeholders) {
 
         Preconditions.checkNotNull(placeholders);
         this.registerPlaceholders(placeholders);
 
     }
 
-    public MapPlaceholderProcessor(@NotNull final Settings settings, @NotNull final Map<String, String> placeholders) {
+    public MapPlaceholderProcessor(final Settings settings, final Map<String, String> placeholders) {
 
         super(settings);
         Preconditions.checkNotNull(placeholders);
@@ -44,7 +45,7 @@ public class MapPlaceholderProcessor extends PlaceholderProcessor {
      *
      * @param placeholders the placeholder map
      */
-    public void registerPlaceholders(@NotNull final Map<String, String> placeholders) {
+    public void registerPlaceholders(final Map<String, String> placeholders) {
 
         for (final Map.Entry<String, String> entry : placeholders.entrySet())
             this.registerPlaceholder(entry.getKey(), entry.getValue());
@@ -59,7 +60,7 @@ public class MapPlaceholderProcessor extends PlaceholderProcessor {
      * @return the previously registered value for the provided identifier or <code>null</code> if there was none
      */
     @Nullable
-    public String registerPlaceholder(@NotNull final String identifier, @NotNull final String value) {
+    public String registerPlaceholder(final String identifier, final String value) {
 
         Preconditions.checkNotNull(identifier);
         Preconditions.checkNotNull(value);
@@ -76,7 +77,8 @@ public class MapPlaceholderProcessor extends PlaceholderProcessor {
      * @param valueSupplier the value supplier
      * @return the previously registered value for the provided identifier or <code>null</code> if there was none
      */
-    public String registerPlaceholder(@NotNull final String identifier, @NotNull final Supplier<String> valueSupplier) {
+    @Nullable
+    public String registerPlaceholder(final String identifier, final Supplier<String> valueSupplier) {
 
         Preconditions.checkNotNull(identifier);
         Preconditions.checkNotNull(valueSupplier);
@@ -92,7 +94,7 @@ public class MapPlaceholderProcessor extends PlaceholderProcessor {
      * @return the previously registered value for the provided identifier or <code>null</code> if there was none
      */
     @Nullable
-    public String unregisterPlaceholder(@NotNull final String identifier) {
+    public String unregisterPlaceholder(final String identifier) {
 
         Preconditions.checkNotNull(identifier);
         this.valueSuppliers.remove(identifier);
@@ -116,7 +118,7 @@ public class MapPlaceholderProcessor extends PlaceholderProcessor {
      *
      * @return defensive map copy
      */
-    public Map<String, String> getEntries() {
+    public Map<String, @Nullable String> getEntries() {
 
         return new HashMap<>(this.placeholders);
 
@@ -131,9 +133,8 @@ public class MapPlaceholderProcessor extends PlaceholderProcessor {
      * @param input the input
      * @return a new string based on the input with its placeholders replaced
      */
-    @NotNull
     @Override
-    public String process(@NotNull final String input) {
+    public String process(final String input) {
 
         Preconditions.checkNotNull(input);
         if (this.placeholders.isEmpty())

@@ -1,9 +1,10 @@
 package com.etdon.commons.conditional;
 
 import com.etdon.commons.functional.Procedure;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNullByDefault;
 import org.jetbrains.annotations.Nullable;
 
+@NotNullByDefault
 public final class Conditional {
 
     /**
@@ -12,7 +13,7 @@ public final class Conditional {
      * @param state     the state
      * @param procedure the procedure
      */
-    public static void executeIfTrue(final boolean state, @NotNull final Procedure procedure) {
+    public static void executeIfTrue(final boolean state, final Procedure procedure) {
 
         Preconditions.checkNotNull(procedure);
         if (state) procedure.execute();
@@ -25,7 +26,7 @@ public final class Conditional {
      * @param state     the state
      * @param procedure the procedure
      */
-    public static void executeIfFalse(final boolean state, @NotNull final Procedure procedure) {
+    public static void executeIfFalse(final boolean state, final Procedure procedure) {
 
         Preconditions.checkNotNull(procedure);
         if (!state) procedure.execute();
@@ -39,7 +40,7 @@ public final class Conditional {
      * @param procedure the procedure
      * @param <T>       the reference type
      */
-    public static <T> void executeIfNotNull(@Nullable final T reference, @NotNull final Procedure procedure) {
+    public static <T> void executeIfNotNull(@Nullable final T reference, final Procedure procedure) {
 
         Preconditions.checkNotNull(procedure);
         if (reference != null) procedure.execute();
@@ -53,7 +54,7 @@ public final class Conditional {
      * @param procedure the procedure
      * @param <T>       the reference type
      */
-    public static <T> void executeIfNull(@Nullable final T reference, @NotNull final Procedure procedure) {
+    public static <T> void executeIfNull(@Nullable final T reference, final Procedure procedure) {
 
         Preconditions.checkNotNull(procedure);
         if (reference == null) procedure.execute();

@@ -1,32 +1,31 @@
 package com.etdon.commons.di;
 
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNullByDefault;
 import org.jetbrains.annotations.Nullable;
 
+@NotNullByDefault
 public interface ServiceProvider {
 
-    <T> void register(@NotNull final T service);
+    <T> void register(final T service);
 
-    <T> void register(@NotNull final Class<T> clazz, @NotNull final T service);
+    <T> void register(final Class<T> clazz, final T service);
 
-    <T> void register(@NotNull final String identifier, @NotNull final T service);
+    <T> void register(final String identifier, final T service);
 
-    <T> void register(@NotNull final Class<T> clazz, @NotNull final String identifier, @NotNull final T service);
-
-    @Nullable
-    <T> T get(@NotNull final Class<T> clazz);
-
-    @NotNull
-    <T> T getOrThrow(@NotNull final Class<T> clazz);
+    <T> void register(final Class<T> clazz, final String identifier, final T service);
 
     @Nullable
-    <T> T get(@NotNull final Class<T> clazz, @NotNull final String identifier);
+    <T> T get(final Class<T> clazz);
 
-    @NotNull
-    <T> T getOrThrow(@NotNull final Class<T> clazz, @NotNull final String identifier);
+    <T> T getOrThrow(final Class<T> clazz);
 
-    boolean has(@NotNull final Class<?> clazz);
+    @Nullable
+    <T> T get(final Class<T> clazz, final String identifier);
 
-    boolean has(@NotNull final Class<?> clazz, @NotNull final String identifier);
+    <T> T getOrThrow(final Class<T> clazz, final String identifier);
+
+    boolean has(final Class<?> clazz);
+
+    boolean has(final Class<?> clazz, final String identifier);
 
 }

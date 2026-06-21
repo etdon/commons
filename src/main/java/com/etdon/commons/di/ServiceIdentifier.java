@@ -1,24 +1,25 @@
 package com.etdon.commons.di;
 
 import com.etdon.commons.conditional.Preconditions;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNullByDefault;
 
 import java.util.Objects;
 
+@NotNullByDefault
 public class ServiceIdentifier {
 
     private final Class<?> clazz;
     private final String identifier;
 
-    public ServiceIdentifier(@NotNull final Class<?> clazz) {
+    public ServiceIdentifier(final Class<?> clazz) {
 
         this.clazz = clazz;
         this.identifier = clazz.getName();
 
     }
 
-    public ServiceIdentifier(@NotNull final Class<?> clazz,
-                             @NotNull final String identifier) {
+    public ServiceIdentifier(final Class<?> clazz,
+                             final String identifier) {
 
         this.clazz = clazz;
         this.identifier = identifier;
@@ -53,7 +54,7 @@ public class ServiceIdentifier {
 
     }
 
-    public static ServiceIdentifier of(@NotNull final Class<?> clazz) {
+    public static ServiceIdentifier of(final Class<?> clazz) {
 
         Preconditions.checkNotNull(clazz);
         return new ServiceIdentifier(clazz);

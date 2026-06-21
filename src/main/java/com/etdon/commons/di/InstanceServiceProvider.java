@@ -5,7 +5,7 @@ import com.etdon.commons.conditional.Preconditions;
 import com.etdon.commons.tuple.ImmutablePair;
 import com.etdon.commons.tuple.KeyValuePair;
 import com.etdon.commons.util.Exceptional;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNullByDefault;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -13,11 +13,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@NotNullByDefault
 public class InstanceServiceProvider implements ServiceProvider {
 
     private final Map<ServiceIdentifier, Object> services = new HashMap<>();
 
-    private InstanceServiceProvider(@NotNull final Builder builder) {
+    private InstanceServiceProvider(final Builder builder) {
 
         if (builder.selfService) {
             this.register(this);
@@ -30,7 +31,7 @@ public class InstanceServiceProvider implements ServiceProvider {
     }
 
     @Override
-    public <T> void register(@NotNull final T instance) {
+    public <T> void register(final T instance) {
 
         Preconditions.checkNotNull(instance);
         this.services.put(ServiceIdentifier.of(instance.getClass()), instance);
@@ -38,7 +39,7 @@ public class InstanceServiceProvider implements ServiceProvider {
     }
 
     @Override
-    public <T> void register(@NotNull final Class<T> clazz, @NotNull final T instance) {
+    public <T> void register(final Class<T> clazz, final T instance) {
 
         Preconditions.checkNotNull(clazz);
         Preconditions.checkNotNull(instance);
@@ -47,7 +48,7 @@ public class InstanceServiceProvider implements ServiceProvider {
     }
 
     @Override
-    public <T> void register(@NotNull final String identifier, @NotNull final T instance) {
+    public <T> void register(final String identifier, final T instance) {
 
         Preconditions.checkNotNull(instance);
         Preconditions.checkNotNull(instance);
@@ -56,7 +57,7 @@ public class InstanceServiceProvider implements ServiceProvider {
     }
 
     @Override
-    public <T> void register(@NotNull final Class<T> clazz, @NotNull final String identifier, @NotNull final T instance) {
+    public <T> void register(final Class<T> clazz, final String identifier, final T instance) {
 
         Preconditions.checkNotNull(clazz);
         Preconditions.checkNotNull(identifier);
@@ -68,7 +69,7 @@ public class InstanceServiceProvider implements ServiceProvider {
     @SuppressWarnings("unchecked")
     @Nullable
     @Override
-    public <T> T get(@NotNull final Class<T> clazz) {
+    public <T> T get(final Class<T> clazz) {
 
         Preconditions.checkNotNull(clazz);
         return (T) this.services.get(ServiceIdentifier.of(clazz));
@@ -76,9 +77,8 @@ public class InstanceServiceProvider implements ServiceProvider {
     }
 
     @SuppressWarnings("unchecked")
-    @NotNull
     @Override
-    public <T> T getOrThrow(@NotNull final Class<T> clazz) {
+    public <T> T getOrThrow(final Class<T> clazz) {
 
         Preconditions.checkNotNull(clazz);
         final Object service = this.services.get(ServiceIdentifier.of(clazz));
@@ -92,7 +92,7 @@ public class InstanceServiceProvider implements ServiceProvider {
     @SuppressWarnings("unchecked")
     @Nullable
     @Override
-    public <T> T get(@NotNull final Class<T> clazz, @NotNull final String identifier) {
+    public <T> T get(final Class<T> clazz, final String identifier) {
 
         Preconditions.checkNotNull(identifier);
         return (T) this.services.get(new ServiceIdentifier(clazz, identifier));
@@ -100,9 +100,8 @@ public class InstanceServiceProvider implements ServiceProvider {
     }
 
     @SuppressWarnings("unchecked")
-    @NotNull
     @Override
-    public <T> T getOrThrow(@NotNull final Class<T> clazz, @NotNull final String identifier) {
+    public <T> T getOrThrow(final Class<T> clazz, final String identifier) {
 
         Preconditions.checkNotNull(clazz);
         Preconditions.checkNotNull(identifier);
@@ -115,7 +114,7 @@ public class InstanceServiceProvider implements ServiceProvider {
     }
 
     @Override
-    public boolean has(@NotNull final Class<?> clazz) {
+    public boolean has(final Class<?> clazz) {
 
         Preconditions.checkNotNull(clazz);
         return this.services.containsKey(ServiceIdentifier.of(clazz));
@@ -123,7 +122,7 @@ public class InstanceServiceProvider implements ServiceProvider {
     }
 
     @Override
-    public boolean has(@NotNull final Class<?> clazz, @NotNull final String identifier) {
+    public boolean has(final Class<?> clazz, final String identifier) {
 
         Preconditions.checkNotNull(clazz);
         Preconditions.checkNotNull(identifier);
@@ -142,8 +141,7 @@ public class InstanceServiceProvider implements ServiceProvider {
         private final List<KeyValuePair<ServiceIdentifier, Object>> servicePairs = new ArrayList<>();
         private boolean selfService = false;
 
-        @NotNull
-        public <T> Builder service(@NotNull final T instance) {
+        public <T> Builder service(final T instance) {
 
             Preconditions.checkNotNull(instance);
             this.servicePairs.add(ImmutablePair.of(ServiceIdentifier.of(instance.getClass()), instance));
@@ -151,8 +149,7 @@ public class InstanceServiceProvider implements ServiceProvider {
 
         }
 
-        @NotNull
-        public <T> Builder service(@NotNull final Class<T> clazz, @NotNull final T instance) {
+        public <T> Builder service(final Class<T> clazz, final T instance) {
 
             Preconditions.checkNotNull(clazz);
             Preconditions.checkNotNull(instance);
@@ -161,8 +158,7 @@ public class InstanceServiceProvider implements ServiceProvider {
 
         }
 
-        @NotNull
-        public <T> Builder service(@NotNull final String identifier, @NotNull final T instance) {
+        public <T> Builder service(final String identifier, final T instance) {
 
             Preconditions.checkNotNull(identifier);
             Preconditions.checkNotNull(instance);
@@ -171,8 +167,7 @@ public class InstanceServiceProvider implements ServiceProvider {
 
         }
 
-        @NotNull
-        public <T> Builder service(@NotNull final Class<T> clazz, @NotNull final String identifier, @NotNull final T instance) {
+        public <T> Builder service(final Class<T> clazz, final String identifier, final T instance) {
 
             Preconditions.checkNotNull(clazz);
             Preconditions.checkNotNull(identifier);
@@ -182,7 +177,6 @@ public class InstanceServiceProvider implements ServiceProvider {
 
         }
 
-        @NotNull
         public Builder selfService() {
 
             this.selfService = true;
@@ -190,7 +184,6 @@ public class InstanceServiceProvider implements ServiceProvider {
 
         }
 
-        @NotNull
         @Override
         public InstanceServiceProvider build() {
 

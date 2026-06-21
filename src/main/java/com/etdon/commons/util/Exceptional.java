@@ -1,7 +1,7 @@
 package com.etdon.commons.util;
 
 import com.etdon.commons.conditional.Preconditions;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNullByDefault;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -10,6 +10,7 @@ import java.util.function.Function;
 /**
  * Static factory for exceptions with formatted messages. Not suited for use in performance critical methods.
  */
+@NotNullByDefault
 public final class Exceptional {
 
     /**
@@ -22,8 +23,8 @@ public final class Exceptional {
      * @throws RuntimeException if the instantiation failed
      * @see Exceptional#of(Class, String, Object...)
      */
-    public static RuntimeException of(@NotNull final String message,
-                                      @NotNull final Object... values) {
+    public static RuntimeException of(final String message,
+                                      final Object... values) {
 
         return of(RuntimeException.class, message, values);
 
@@ -43,9 +44,9 @@ public final class Exceptional {
      * @param <T> the exception type
      * @throws RuntimeException if the instantiation failed
      */
-    public static <T extends Exception> T of(@NotNull final Class<T> type,
-                                             @NotNull final String message,
-                                             @NotNull final Object... values) {
+    public static <T extends Exception> T of(final Class<T> type,
+                                             final String message,
+                                             final Object... values) {
 
         Preconditions.checkNotNull(type);
         Preconditions.checkNotNull(message);
@@ -74,9 +75,9 @@ public final class Exceptional {
      * @return the exception instance
      * @param <T> the exception type
      */
-    public static <T extends Exception> T of(@NotNull final Function<String, T> factory,
-                                             @NotNull final String message,
-                                             @NotNull final Object... values) {
+    public static <T extends Exception> T of(final Function<String, T> factory,
+                                             final String message,
+                                             final Object... values) {
 
         Preconditions.checkNotNull(factory);
         Preconditions.checkNotNull(message);

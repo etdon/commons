@@ -3,8 +3,9 @@ package com.etdon.commons.context;
 import com.etdon.commons.builder.FluentBuilder;
 import com.etdon.commons.conditional.Preconditions;
 import com.etdon.commons.constant.Constants;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.NotNullByDefault;
 
+@NotNullByDefault
 public abstract class PlaceholderProcessor {
 
     private static final Settings DEFAULT_SETTINGS = Settings.builder()
@@ -21,14 +22,14 @@ public abstract class PlaceholderProcessor {
 
     }
 
-    public PlaceholderProcessor(@NotNull final Settings settings) {
+    public PlaceholderProcessor(final Settings settings) {
 
         Preconditions.checkNotNull(settings);
         this.settings = settings;
 
     }
 
-    protected String createPlaceholder(@NotNull final String identifier) {
+    protected String createPlaceholder(final String identifier) {
 
         return new StringBuilder()
                 .append(this.settings.getPlaceholderIdentifier())
@@ -39,8 +40,7 @@ public abstract class PlaceholderProcessor {
 
     }
 
-    @NotNull
-    public abstract String process(@NotNull final String input);
+    public abstract String process(final String input);
 
     public Settings getSettings() {
 
@@ -54,7 +54,7 @@ public abstract class PlaceholderProcessor {
         private final char valueStartIdentifier;
         private final char valueEndIdentifier;
 
-        private Settings(@NotNull final Builder builder) {
+        private Settings(final Builder builder) {
 
             this.placeholderIdentifier = builder.placeholderIdentifier;
             this.valueStartIdentifier = builder.valueStartIdentifier;
@@ -96,7 +96,6 @@ public abstract class PlaceholderProcessor {
 
             }
 
-            @NotNull
             public Builder placeholderIdentifier(final char placeholderIdentifier) {
 
                 this.placeholderIdentifier = placeholderIdentifier;
@@ -104,7 +103,6 @@ public abstract class PlaceholderProcessor {
 
             }
 
-            @NotNull
             public Builder valueStartIdentifier(final char valueStartIdentifier) {
 
                 this.valueStartIdentifier = valueStartIdentifier;
@@ -112,7 +110,6 @@ public abstract class PlaceholderProcessor {
 
             }
 
-            @NotNull
             public Builder valueEndIdentifier(final char valueEndIdentifier) {
 
                 this.valueEndIdentifier = valueEndIdentifier;
@@ -120,14 +117,12 @@ public abstract class PlaceholderProcessor {
 
             }
 
-            @NotNull
             @Override
             public Settings build() {
 
                 Preconditions.checkNotNull(this.placeholderIdentifier);
                 Preconditions.checkNotNull(this.valueStartIdentifier);
                 Preconditions.checkNotNull(this.valueEndIdentifier);
-
                 return new Settings(this);
 
             }
