@@ -8,6 +8,9 @@ import org.jetbrains.annotations.Nullable;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
 
+/**
+ * {@link Trait} that is eligible for {@link AnnotatedElement}s carrying a specific annotation type.
+ */
 @NotNullByDefault
 public final class AnnotatedTrait implements Trait<AnnotatedElement> {
 

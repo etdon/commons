@@ -5,6 +5,9 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Utilities for validating method arguments and state, throwing an appropriate exception if a check fails.
+ */
 public final class Preconditions {
 
     private static final String DEFAULT_CHECK_NOT_NULL_MESSAGE = "Reference was null.";

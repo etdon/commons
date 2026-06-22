@@ -4,6 +4,12 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
+/**
+ * Mutable {@link KeyValuePair} implementation.
+ *
+ * @param <K> the key type
+ * @param <V> the value type
+ */
 public class Pair<K, V> implements KeyValuePair<K, V> {
 
     private K key;

@@ -4,6 +4,9 @@ import com.etdon.commons.functional.Procedure;
 import org.jetbrains.annotations.NotNullByDefault;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Utilities for executing procedures based on a condition.
+ */
 @NotNullByDefault
 public final class Conditional {
 

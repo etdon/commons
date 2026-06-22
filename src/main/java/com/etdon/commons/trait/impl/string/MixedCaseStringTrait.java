@@ -3,6 +3,9 @@ package com.etdon.commons.trait.impl.string;
 import com.etdon.commons.trait.Trait;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * {@link Trait} that is eligible for character sequences containing both upper and lower case characters.
+ */
 public final class MixedCaseStringTrait implements Trait<CharSequence> {
 
     @Override

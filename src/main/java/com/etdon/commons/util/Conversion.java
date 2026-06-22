@@ -3,7 +3,7 @@ package com.etdon.commons.util;
 import com.etdon.commons.conditional.Preconditions;
 
 /**
- * This class provides various utility methods for converting values from one type to another.
+ * Utilities for data conversion.
  */
 public final class Conversion {
 

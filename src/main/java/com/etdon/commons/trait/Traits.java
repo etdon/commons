@@ -2,12 +2,15 @@ package com.etdon.commons.trait;
 
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Utilities for trait work.
+ */
 public final class Traits {
 
     /**
      * Checks if all provided traits apply to the provided input.
      *
-     * @param input the input
+     * @param input  the input
      * @param traits the traits to check
      * @return <code>true</code> if all traits apply, <code>false</code> otherwise
      * @param <T> the input type

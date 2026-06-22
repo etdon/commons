@@ -23,6 +23,10 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 
+/**
+ * Resolves the class paths and classes reachable from a given {@link ClassLoader} by traversing its files and parent
+ * class loaders. Packages can be excluded from the resolution.
+ */
 @NotNullByDefault
 public class ClassLoaderResolver {
 

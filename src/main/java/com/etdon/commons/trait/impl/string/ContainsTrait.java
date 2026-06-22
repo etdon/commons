@@ -3,6 +3,9 @@ package com.etdon.commons.trait.impl.string;
 import com.etdon.commons.trait.Trait;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * {@link Trait} that is eligible for character sequences containing a target character sequence as a subsequence.
+ */
 final class ContainsTrait implements Trait<CharSequence> {
 
     private final CharSequence target;

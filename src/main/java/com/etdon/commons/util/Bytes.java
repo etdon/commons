@@ -2,6 +2,9 @@ package com.etdon.commons.util;
 
 import java.nio.charset.Charset;
 
+/**
+ * Utilities for byte work.
+ */
 public final class Bytes {
 
     public static final char[] DIGITS = {
@@ -13,6 +16,12 @@ public final class Bytes {
             'U', 'V', 'W', 'X', 'Y', 'Z'
     };
 
+    /**
+     * Converts the provided <code>byte</code> to its two character hexadecimal string representation.
+     *
+     * @param b the <code>byte</code> value
+     * @return the hexadecimal string representation
+     */
     public static String toHexString(byte b) {
 
         final byte[] buffer = new byte[2];
@@ -23,6 +32,12 @@ public final class Bytes {
 
     }
 
+    /**
+     * Converts the provided <code>byte</code> array to its hexadecimal string representation.
+     *
+     * @param bytes the <code>byte</code> array
+     * @return the hexadecimal string representation
+     */
     public static String toHexString(final byte[] bytes) {
 
         final StringBuilder hexStringBuilder = new StringBuilder();
@@ -33,6 +48,14 @@ public final class Bytes {
 
     }
 
+    /**
+     * Converts the provided <code>byte</code> array to its hexadecimal string representation inserting a space after
+     * every provided amount of bytes.
+     *
+     * @param bytes the <code>byte</code> array
+     * @param split the amount of bytes after which a space is inserted
+     * @return the hexadecimal string representation
+     */
     public static String toHexString(final byte[] bytes, final int split) {
 
         final StringBuilder hexStringBuilder = new StringBuilder();
@@ -46,12 +69,27 @@ public final class Bytes {
 
     }
 
+    /**
+     * Converts the provided <code>byte</code> to its binary string representation inserting a space after every four
+     * bits. Convenience overload of {@link Bytes#toBinaryString(byte, int)} using a split of <code>4</code>.
+     *
+     * @param b the <code>byte</code> value
+     * @return the binary string representation
+     */
     public static String toBinaryString(byte b) {
 
         return toBinaryString(b, 4);
 
     }
 
+    /**
+     * Converts the provided <code>byte</code> to its binary string representation inserting a space after every
+     * provided amount of bits.
+     *
+     * @param b     the <code>byte</code> value
+     * @param split the amount of bits after which a space is inserted
+     * @return the binary string representation
+     */
     public static String toBinaryString(byte b, final int split) {
 
         final StringBuilder binaryStringBuilder = new StringBuilder(Byte.SIZE);

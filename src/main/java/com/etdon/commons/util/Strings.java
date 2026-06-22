@@ -10,9 +10,23 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utilities for string work.
+ */
 @NotNullByDefault
 public final class Strings {
 
+    /**
+     * Replaces the value placeholders in the provided input with the provided values in order of appearance. A
+     * placeholder consists of a {@link Constants#DEFAULT_VALUE_START_IDENTIFIER} directly followed by a
+     * {@link Constants#DEFAULT_VALUE_END_IDENTIFIER} (e.g. <code>{}</code>) and can be escaped by preceding it with the
+     * {@link Constants#ESCAPE_IDENTIFIER}. If the input contains more placeholders than values are provided the surplus
+     * placeholders are left untouched. The input is returned unchanged if no values are provided.
+     *
+     * @param input  the input
+     * @param values the placeholder values
+     * @return the input with its placeholders replaced
+     */
     public static String applyValues(final String input, final Object... values) {
 
         Preconditions.checkNotNull(input);
@@ -45,6 +59,14 @@ public final class Strings {
 
     }
 
+    /**
+     * Splits the provided input into parts using the provided character as a delimiter. The delimiter itself is not
+     * included in any of the resulting parts.
+     *
+     * @param input     the input
+     * @param splitChar the delimiter character
+     * @return the parts
+     */
     public static List<String> split(final String input, final char splitChar) {
 
         Preconditions.checkNotNull(input);
@@ -64,6 +86,14 @@ public final class Strings {
 
     }
 
+    /**
+     * Repeats the provided input the provided amount of times. The input is returned unchanged if the provided count is
+     * less than or equal to <code>1</code>.
+     *
+     * @param input the input
+     * @param count the repeat count
+     * @return the repeated input
+     */
     public static String repeat(final String input, final int count) {
 
         Preconditions.checkNotNull(input);
@@ -78,12 +108,28 @@ public final class Strings {
 
     }
 
+    /**
+     * Splits the provided input into chunks of the provided size separated by a space. Convenience overload of
+     * {@link Strings#toChunks(String, int, char)} using a space as the separator.
+     *
+     * @param input     the input
+     * @param chunkSize the chunk size
+     * @return the chunked input
+     */
     public static String toChunks(final String input, final int chunkSize) {
 
         return toChunks(input, chunkSize, ' ');
 
     }
 
+    /**
+     * Splits the provided input into chunks of the provided size separated by the provided separator character.
+     *
+     * @param input     the input
+     * @param chunkSize the chunk size
+     * @param separator the separator character
+     * @return the chunked input
+     */
     public static String toChunks(final String input, final int chunkSize, final char separator) {
 
         final StringBuilder output = new StringBuilder();
@@ -98,6 +144,13 @@ public final class Strings {
 
     }
 
+    /**
+     * Splits the provided input into lines of the provided size separated by the system line separator.
+     *
+     * @param input    the input
+     * @param lineSize the line size
+     * @return the input split into lines
+     */
     public static String toLines(final String input, final int lineSize) {
 
         final StringBuilder output = new StringBuilder();
@@ -112,12 +165,26 @@ public final class Strings {
 
     }
 
+    /**
+     * Surrounds the provided input with the provided affix on both sides.
+     *
+     * @param affix the affix
+     * @param input the input
+     * @return the surrounded input
+     */
     public static String surround(@Nullable final String affix, @Nullable final String input) {
 
         return combine(affix, input, affix);
 
     }
 
+    /**
+     * Combines the provided inputs into a single string. <code>null</code> inputs are skipped. An empty string is
+     * returned if the provided array is <code>null</code> or empty.
+     *
+     * @param inputs the inputs
+     * @return the combined string
+     */
     public static String combine(@Nullable final String... inputs) {
 
         if (inputs == null || inputs.length == 0)
@@ -133,6 +200,15 @@ public final class Strings {
 
     }
 
+    /**
+     * Joins the provided inputs into a single string separated by the provided separator. <code>null</code> inputs are
+     * skipped and no trailing separator is appended. An empty string is returned if the provided array is
+     * <code>null</code> or empty.
+     *
+     * @param separator the separator
+     * @param inputs    the inputs
+     * @return the joined string
+     */
     public static String list(@Nullable final String separator, @Nullable final String... inputs) {
 
         if (inputs == null || inputs.length == 0)
@@ -151,6 +227,13 @@ public final class Strings {
 
     }
 
+    /**
+     * Checks if all provided traits apply to the provided input. Delegates to {@link Traits#check(Object, Trait[])}.
+     *
+     * @param input  the input
+     * @param traits the traits to check
+     * @return <code>true</code> if all traits apply, <code>false</code> otherwise
+     */
     @SafeVarargs
     public static boolean checkTraits(@Nullable final CharSequence input, @Nullable final Trait<CharSequence>... traits) {
 

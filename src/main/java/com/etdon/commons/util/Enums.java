@@ -3,6 +3,9 @@ package com.etdon.commons.util;
 import com.etdon.commons.conditional.Preconditions;
 import org.jetbrains.annotations.NotNullByDefault;
 
+/**
+ * Utilities for enum work.
+ */
 @NotNullByDefault
 public final class Enums {
 

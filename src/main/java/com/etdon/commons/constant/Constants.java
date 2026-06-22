@@ -1,5 +1,8 @@
 package com.etdon.commons.constant;
 
+/**
+ * Contains constant values used across the library.
+ */
 public final class Constants {
 
     public static final char DEFAULT_PLACEHOLDER_IDENTIFIER = '$';

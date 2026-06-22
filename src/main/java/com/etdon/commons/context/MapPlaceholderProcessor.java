@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+/**
+ * {@link PlaceholderProcessor} implementation backed by a map of registered placeholder values and value suppliers.
+ */
 @NotNullByDefault
 public class MapPlaceholderProcessor extends PlaceholderProcessor {
 

@@ -5,6 +5,9 @@ import org.jetbrains.annotations.NotNullByDefault;
 
 import java.util.Objects;
 
+/**
+ * Identifies a registered service by its class and an identifier.
+ */
 @NotNullByDefault
 public class ServiceIdentifier {
 

@@ -1,5 +1,8 @@
 package com.etdon.commons.util;
 
+/**
+ * Utilities for packing and unpacking color values.
+ */
 public final class Colors {
 
     /**
@@ -8,9 +11,9 @@ public final class Colors {
      * <p>
      * The 4 most significant bits are unused as no alpha value is included.
      *
-     * @param red the red color value
+     * @param red   the red color value
      * @param green the green color value
-     * @param blue the blue color value
+     * @param blue  the blue color value
      * @return the packed colors in one integer
      */
     public static int pack(final int red, final int green, final int blue) {
@@ -24,9 +27,9 @@ public final class Colors {
      * aaaa aaaa rrrr rrrr gggg gggg bbbb bbbb
      *
      * @param alpha the alpha value
-     * @param red the red color value
+     * @param red   the red color value
      * @param green the green color value
-     * @param blue the blue color value
+     * @param blue  the blue color value
      * @return the packed colors in one integer
      */
     public static int pack(final int alpha, final int red, final int green, final int blue) {

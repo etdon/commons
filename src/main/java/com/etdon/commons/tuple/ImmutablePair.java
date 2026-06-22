@@ -4,6 +4,13 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Objects;
 
+/**
+ * Immutable {@link KeyValuePair} implementation whose {@link #setKey(Object)} and {@link #setValue(Object)} methods
+ * throw an {@link UnsupportedOperationException}.
+ *
+ * @param <K> the key type
+ * @param <V> the value type
+ */
 public class ImmutablePair<K, V> implements KeyValuePair<K, V> {
 
     public final K key;

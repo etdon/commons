@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * {@link ServiceProvider} implementation backed by a map of registered services.
+ */
 @NotNullByDefault
 public class InstanceServiceProvider implements ServiceProvider {
 

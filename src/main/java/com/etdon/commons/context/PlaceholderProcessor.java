@@ -5,6 +5,10 @@ import com.etdon.commons.conditional.Preconditions;
 import com.etdon.commons.constant.Constants;
 import org.jetbrains.annotations.NotNullByDefault;
 
+/**
+ * Base class for processors that replace placeholders within a string. The characters used to identify placeholders are
+ * configurable via {@link Settings}.
+ */
 @NotNullByDefault
 public abstract class PlaceholderProcessor {
 

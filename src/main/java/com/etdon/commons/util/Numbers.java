@@ -3,9 +3,18 @@ package com.etdon.commons.util;
 import com.etdon.commons.conditional.Preconditions;
 import org.jetbrains.annotations.NotNullByDefault;
 
+/**
+ * Utilities for number work.
+ */
 @NotNullByDefault
 public final class Numbers {
 
+    /**
+     * Converts the provided number to its hexadecimal string representation. Leading zero bytes are omitted.
+     *
+     * @param input the input
+     * @return the hexadecimal string representation
+     */
     public static String toHexString(final Number input) {
 
         Preconditions.checkNotNull(input);
